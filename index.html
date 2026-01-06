@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confitería Moderna</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url('https://images.unsplash.com/photo-1509440159598-8b9b0e3d7b1b');
+      background-size: cover;
+      background-position: center;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      border: 2px solid white;
+      padding: 25px 40px;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      background: #111;
+      padding: 15px;
+      text-align: center;
+      z-index: 1000;
+    }
+    nav a {
+      color: white;
+      margin: 0 18px;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    nav a:hover {
+      opacity: 0.7;
+    }
+    section {
+      padding: 50px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #111;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .galeria img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .contacto {
+      text-align: center;
+      line-height: 1.8;
+    }
+    footer {
+      background: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 30px;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#acerca">Acerca de</a>
+    <a href="#galeria">Especialidades</a>
+    <a href="#ubicacion">Ubicación</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <header>
+    <h1>Confitería Moderna</h1>
+  </header>
+
+  <section id="acerca">
+    <h2>Acerca de Nosotros</h2>
+    <p>
+      Somos una confitería ubicada en Buenos Aires, dedicada a ofrecer productos
+      artesanales elaborados con ingredientes de primera calidad. Desde tortas
+      clásicas hasta especialidades únicas, cada creación está pensada para
+      acompañar tus mejores momentos.
+    </p>
+  </section>
+
+  <section id="local">
+    <h2>Nuestro Local</h2>
+    <p style="text-align:center; max-width:700px; margin:0 auto 30px;">
+      Un espacio moderno y cálido, pensado para disfrutar un buen café acompañado
+      de nuestras especialidades dulces en un ambiente cómodo y elegante.
+    </p>
+    <div style="text-align:center;">
+      <img 
+        src="https://images.unsplash.com/photo-1521017432531-fbd92d768814" 
+        alt="Interior de confitería moderna" 
+        style="width:100%; max-width:900px; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.15);" />
+    </div>
+  </section>
+
+  <section id="galeria">
+    <h2>Nuestras Especialidades</h2>
+    <div class="galeria">
+      <img src="img/tortas.jpg" alt="Tortas artesanales">
+      <img src="img/masas.jpg" alt="Masas finas">
+     <img src="img/facturas.jpg" alt="Facturas y medialunas">
+    </div>
+  </section>
+
+  <section id="ubicacion">
+    <h2>Ubicación</h2>
+    <p style="text-align:center;">Nos encontrás en Buenos Aires, Argentina</p>
+    <div style="text-align:center;">
+      <iframe
+        src="https://www.google.com/maps?q=Buenos%20Aires&output=embed"
+        width="100%"
+        height="300"
+        style="border:0; border-radius:10px;"
+        allowfullscreen=""
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <div class="contacto">
+      <p>📍 Buenos Aires, Argentina</p>
+      <p>📞 Tel / WhatsApp: +54 11 0000-0000</p>
+      <p>✉️ Email: contacto@confiteria.com</p>
+      <p>🕒 Horarios: Lunes a Sábado de 8 a 20 hs</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Confitería Moderna · Todos los derechos reservados
+  </footer>
+
+</body>
+</html>
