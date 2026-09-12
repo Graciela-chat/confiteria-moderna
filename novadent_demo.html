@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínicas NovaDent | Tu sonrisa en buenas manos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* RESET Y VARIABLES DE COLOR PARA CLÍNICA DENTAL */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --celeste-medico: #0ea5e9;
+            --azul-oscuro: #0f172a;
+            --azul-claro: #e0f2fe;
+            --blanco: #ffffff;
+            --gris-claro: #f8fafc;
+            --texto-oscuro: #334155;
+            --verde-wsp: #25d366;
+        }
+
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            color: var(--texto-oscuro); 
+            background-color: var(--blanco);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .label { font-family: 'Poppins', sans-serif; }
+
+        /* UTILIDADES BOTONES */
+        .cta-button {
+            display: inline-block;
+            background: var(--celeste-medico);
+            color: var(--blanco);
+            padding: 15px 35px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .cta-button:hover { 
+            background: var(--azul-oscuro); 
+            transform: translateY(-3px); 
+        }
+
+        /* SLIDER PRINCIPAL (HERO) */
+        .hero-slider-container {
+            position: relative; 
+            overflow: hidden; 
+            width: 100%;
+            height: 85vh;
+            touch-action: pan-y;
+        }
+
+        .slider { 
+            display: flex; 
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+        }
+
+        .slide-item {
+            min-width: 100%;
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Superposición oscura para que los textos blancos se lean bien */
+        .slide-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            z-index: 1;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            color: var(--blanco);
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .slide-content h1 { 
+            font-size: clamp(2.5rem, 6vw, 4.5rem); 
+            line-height: 1.2; 
+            margin-bottom: 20px;
+        }
+
+        .slide-content h1 span { color: var(--celeste-medico); }
+        .slide-content p { font-size: 1.3rem; margin-bottom: 30px; font-weight: 300; }
+
+        .slider-nav {
+            position: absolute; bottom: 30px; width: 100%;
+            display: flex; justify-content: center; gap: 15px;
+            z-index: 3;
+        }
+
+        .slider-button {
+            background: rgba(255,255,255,0.2); color: var(--blanco); border: none;
+            width: 50px; height: 50px; cursor: pointer; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; transition: 0.3s;
+        }
+
+        .slider-button:hover { background: var(--celeste-medico); }
+
+        /* BARRA DE ESTADÍSTICAS / CARACTERÍSTICAS */
+        .stats-bar {
+            background: var(--azul-oscuro);
+            color: var(--blanco);
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 20px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .stat-item { text-align: center; flex: 1; min-width: 200px; }
+        .stat-item i { color: var(--celeste-medico); font-size: 2.5rem; margin-bottom: 15px; }
+        .stat-item div { font-family: 'Poppins', sans-serif; font-weight: bold; font-size: 1.1rem; }
+        .stat-item p { font-size: 0.9rem; color: #cbd5e1; margin-top: 5px; }
+
+        /* SECCIONES GENERALES */
+        section { padding: 90px 20px; max-width: 1200px; margin: auto; }
+
+        h2 { 
+            text-align: center; 
+            font-size: 2.5rem; 
+            margin-bottom: 60px; 
+            color: var(--azul-oscuro);
+        }
+        h2::after {
+            content: ""; display: block; width: 60px; height: 4px;
+            background: var(--celeste-medico); margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ACERCA DE */
+        #acerca { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .acerca-img img { width: 100%; border-radius: 20px; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .acerca-texto p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; }
+
+        /* ESPECIALIDADES (GRID) */
+        .grid-especialidades {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card-especialidad {
+            background: var(--gris-claro);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: 0.3s;
+            border-bottom: 4px solid transparent;
+        }
+
+        .card-especialidad:hover {
+            transform: translateY(-10px);
+            background: var(--blanco);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-bottom: 4px solid var(--celeste-medico);
+        }
+
+        .card-especialidad i {
+            font-size: 3.5rem;
+            color: var(--celeste-medico);
+            margin-bottom: 20px;
+        }
+
+        .card-especialidad h3 { font-size: 1.3rem; margin-bottom: 15px; color: var(--azul-oscuro); }
+        .card-especialidad p { font-size: 0.95rem; line-height: 1.6; }
+
+        /* UBICACIÓN SIN MAPA */
+        .grid-sucursales {
+            display: grid; 
+            grid-template-columns: 1fr 1fr;
+            border-radius: 20px; 
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+        
+        .sucursal-info { padding: 60px 40px; }
+        
+        .sucursal-1 { background: var(--gris-claro); }
+        .sucursal-2 { background: var(--azul-oscuro); color: var(--blanco); }
+        .sucursal-2 h3, .sucursal-2 p i { color: var(--celeste-medico); }
+        
+        .sucursal-info h3 { font-size: 1.8rem; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
+        .sucursal-info p { margin: 15px 0; font-size: 1.1rem; display: flex; align-items: center; gap: 15px; }
+        .sucursal-info i { color: var(--celeste-medico); font-size: 1.2rem; }
+        
+        .badge-nueva {
+            background: var(--celeste-medico);
+            color: white;
+            font-size: 0.8rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        /* WHATSAPP FLOTANTE */
+        .wsp {
+            position: fixed; bottom: 30px; right: 30px;
+            background: var(--verde-wsp); color: white;
+            width: 65px; height: 65px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 35px; z-index: 1000; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .wsp:hover { transform: scale(1.1); }
+
+        footer { background: var(--azul-oscuro); color: white; padding: 40px 20px; text-align: center; }
+
+        @media (max-width: 768px) {
+            #acerca, .grid-sucursales { grid-template-columns: 1fr; }
+            .hero-slider-container { height: 75vh; }
+            .sucursal-info { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botón WhatsApp Flotante -->
+    <a href="https://wa.me/34600000000?text=Hola!%20Me%20gustar%C3%ADa%20hacer%20una%20consulta%20en%20NovaDent." class="wsp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SLIDER HERO -->
+    <header class="hero-slider-container">
+        <div class="slider">
+            <!-- Diapositiva 1: Guardia 24hs -->
+            <div class="slide-item" style="background-image: url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1920&auto=format&fit=crop');">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Tranquilidad total con nuestra<br><span>Guardia 24hs</span></h1>
+                    <p>Atención odontológica de urgencia, todos los días, a cualquier hora. Tu salud no entiende de horarios.</p>
+                    <a href="https://wa.me/34600000000?text=Urgencia!" class="cta-button" target="_blank">Atención de Urgencia</a>
+                </div>
+            </div>
+
+            <!-- Diapositiva 2: Nueva Sede San Isidro -->
+            <div class="slide-item" style="background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1920&auto=format&fit=crop');">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>¡Estamos creciendo!<br>Nueva sede en <span>San Isidro</span></h1>
+                    <p>Acércate a conocer nuestras nuevas instalaciones equipadas con la última tecnología para cuidar tu sonrisa.</p>
+                    <a href="#sedes" class="cta-button">Ver Ubicación</a>
+                </div>
+            </div>
+
+            <!-- Diapositiva 3: Agendar Consulta -->
+            <div class="slide-item" style="background-image: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1920&auto=format&fit=crop');">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Empieza a sonreír.<br><span>Agenda tu consulta</span> hoy</h1>
+                    <p>Asesoramiento personalizado y los mejores tratamientos estéticos y preventivos.</p>
+                    <a href="https://wa.me/34600000000?text=Hola!%20Quiero%20agendar%20una%20cita." class="cta-button" style="background: var(--verde-wsp); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);" target="_blank">
+                        <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Escribir por WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Controles del Slider -->
+        <div class="slider-nav">
+            <button class="slider-button prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-button next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </header>
+
+    <!-- BARRA DE CONFIANZA -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <i class="fas fa-user-md"></i>
+            <div>Profesionales Expertos</div>
+            <p>Atención especializada</p>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-microscope"></i>
+            <div>Tecnología Avanzada</div>
+            <p>Tratamientos precisos</p>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-map-marked-alt"></i>
+            <div>Dos Ubicaciones</div>
+            <p>San Fernando y San Isidro</p>
+        </div>
+    </div>
+
+    <!-- ACERCA DE -->
+    <section id="acerca">
+        <div class="acerca-texto">
+            <h2>Bienvenido a Clínicas NovaDent</h2>
+            <p>En <strong>NovaDent</strong> fusionamos la calidez humana con la excelencia clínica. Entendemos que visitar al dentista debe ser una experiencia cómoda, segura y sin estrés.</p>
+            <p>Por eso, en nuestras clínicas de San Fernando y nuestra nueva sede en San Isidro, trabajamos con protocolos de vanguardia para garantizar que tu sonrisa y tu salud bucodental estén siempre en las mejores manos.</p>
+        </div>
+        <div class="acerca-img">
+            <img src="https://images.unsplash.com/photo-1598256989800-fea5f67ddc7f?q=80&w=800&auto=format&fit=crop" alt="Equipo Médico NovaDent">
+        </div>
+    </section>
+
+    <!-- ESPECIALIDADES -->
+    <section id="especialidades" style="background-color: var(--azul-claro); max-width: 100%; border-radius: 40px; padding: 90px 5%;">
+        <h2>Nuestras Especialidades</h2>
+        <div class="grid-especialidades">
+            
+            <div class="card-especialidad">
+                <i class="fas fa-tooth"></i>
+                <h3>Implantología Avanzada</h3>
+                <p>Recupera la funcionalidad y estética de tu boca con implantes de titanio de máxima calidad y procedimientos mínimamente invasivos.</p>
+            </div>
+            
+            <div class="card-especialidad">
+                <i class="fas fa-magic"></i>
+                <h3>Estética Dental</h3>
+                <p>Diseño de sonrisa, carillas de porcelana y blanqueamiento profesional para lograr los dientes que siempre soñaste.</p>
+            </div>
+
+            <div class="card-especialidad">
+                <i class="fas fa-teeth"></i>
+                <h3>Ortodoncia</h3>
+                <p>Alineación perfecta mediante ortodoncia invisible (alineadores transparentes) o brackets estéticos tradicionales.</p>
+            </div>
+
+            <div class="card-especialidad">
+                <i class="fas fa-stethoscope"></i>
+                <h3>Odontología General</h3>
+                <p>Prevención, limpiezas profundas, tratamiento de caries y cuidado integral familiar para mantener una boca sana.</p>
+            </div>
+
+            <div class="card-especialidad">
+                <i class="fas fa-syringe"></i>
+                <h3>Cirugías</h3>
+                <p>Extracciones complejas, muelas del juicio y regeneración ósea realizadas por cirujanos maxilofaciales expertos.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- UBICACIONES (SIN MAPA) -->
+    <section id="sedes">
+        <h2>Nuestras Clínicas</h2>
+        <div class="grid-sucursales">
+            <!-- Sede 1 -->
+            <div class="sucursal-info sucursal-1">
+                <h3><i class="fas fa-clinic-medical"></i> Sede San Fernando</h3>
+                <p>Nuestra clínica histórica. Más de 10 años brindando sonrisas de confianza a todos nuestros pacientes.</p>
+                <br>
+                <p><i class="fas fa-map-marker-alt"></i> Av. Constitución 1234, San Fernando</p>
+                <p><i class="fas fa-phone"></i> +34 600 000 000 / +54 11 0000 0000</p>
+                <p><i class="fas fa-envelope"></i> sanfernando@novadent.com</p>
+                <br>
+                <a href="https://wa.me/34600000000" target="_blank" class="cta-button" style="padding: 10px 25px; font-size: 1rem;">Agendar aquí</a>
+            </div>
+            
+            <!-- Sede 2 -->
+            <div class="sucursal-info sucursal-2">
+                <h3><i class="fas fa-star"></i> Sede San Isidro <span class="badge-nueva">¡NUEVA!</span></h3>
+                <p>Instalaciones de primer nivel. Aprovecha nuestras promociones exclusivas por apertura.</p>
+                <br>
+                <p><i class="fas fa-map-marker-alt"></i> Av. del Libertador 450, San Isidro</p>
+                <p><i class="fas fa-phone"></i> +34 600 000 000 / +54 11 0000 0000</p>
+                <p><i class="fas fa-envelope"></i> sanisidro@novadent.com</p>
+                <br>
+                <a href="https://wa.me/34600000000" target="_blank" class="cta-button" style="background: var(--verde-wsp); padding: 10px 25px; font-size: 1rem;">Agendar aquí</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Clínicas NovaDent | Cuidando tu sonrisa en San Fernando y San Isidro.</p>
+    </footer>
+
+    <!-- SCRIPT DEL SLIDER -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slider = document.querySelector('.slider');
+            const items = document.querySelectorAll('.slide-item');
+            const prevButton = document.querySelector('.prev');
+            const nextButton = document.querySelector('.next');
+            let currentIndex = 0;
+
+            function updateSlider() {
+                const width = slider.offsetWidth;
+                slider.style.transform = `translateX(${-currentIndex * width}px)`;
+            }
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateSlider();
+            });
+
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                updateSlider();
+            });
+
+            window.addEventListener('resize', updateSlider);
+            
+            // Auto-play cada 6 segundos
+            setInterval(() => {
+                nextButton.click();
+            }, 6000);
+        });
+    </script>
+</body>
+</html>
