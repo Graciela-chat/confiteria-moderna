@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>ATHINA | Restó & Experiencia Urbana</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
-    
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@1,600&display=swap"
+          rel="stylesheet">
+
     <style>
         :root {
-            --negro-fiko: #121212;
+            --negro-fondo: #121212;
             --gris-industrial: #1e1e1e;
             --dorado-suave: #d4af37;
             --blanco-hueso: #e0e0e0;
@@ -17,51 +22,85 @@
             --accent: #ffffff;
         }
 
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            margin: 0; 
-            color: var(--blanco-hueso); 
-            background-color: var(--negro-fiko); 
-            scroll-behavior: smooth; 
+        * {
+            box-sizing: border-box;
         }
 
-        /* Hero */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--blanco-hueso);
+            background-color: var(--negro-fondo);
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
         .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('img/hero1.jpg') no-repeat center center;
+            min-height: 100vh;
+            min-height: 100svh;
+            background:
+                linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+                url('img/hero1.jpg') no-repeat center center;
             background-size: cover;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             text-align: center;
+            padding: 30px 20px;
         }
 
-        .hero-content h1 { 
+        .hero-content {
+            width: 100%;
+        }
+
+        .hero-content h1 {
             font-size: clamp(3rem, 10vw, 6rem);
-            margin: 0; 
+            margin: 0;
             letter-spacing: 12px;
             font-weight: 700;
             text-transform: uppercase;
         }
 
-        .hero-content p { 
+        .hero-content p {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem; 
-            font-style: italic; 
+            font-size: 1.5rem;
+            font-style: italic;
             color: var(--dorado-suave);
             margin-top: 10px;
         }
 
-        section { padding: 80px 20px; max-width: 1200px; margin: auto; }
+        /* =========================
+           SECCIONES
+        ========================= */
 
-        h2 { 
-            text-align: center; 
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
             font-size: 2.5rem;
             text-transform: uppercase;
             letter-spacing: 4px;
-            margin-bottom: 40px;
+            margin: 0 0 40px;
         }
-        
+
         h2::after {
             content: "";
             display: block;
@@ -71,285 +110,1068 @@
             margin: 20px auto;
         }
 
-        /* Sección Acerca */
+        /* =========================
+           ACERCA
+        ========================= */
+
         #acerca {
             background: var(--gris-industrial);
+
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 50px;
+
             align-items: center;
+
             border-radius: 4px;
         }
 
-        .acerca-texto { line-height: 1.8; font-size: 1.1rem; color: var(--gris-texto); }
-        .acerca-texto strong { color: var(--blanco-hueso); }
+        .acerca-img img {
+            width: 100%;
+            display: block;
+            border-radius: 4px;
+        }
 
-        /* Slider Moderno - Optimizado para Touch & Desktop */
+        .acerca-texto {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: var(--gris-texto);
+        }
+
+        .acerca-texto strong {
+            color: var(--blanco-hueso);
+        }
+
+        /* =========================
+           SLIDER
+        ========================= */
+
         .slider-container {
             position: relative;
+            width: 100%;
             overflow: hidden;
+
             border: 1px solid #333;
-            touch-action: pan-y; /* Permite scroll vertical pero captura el horizontal */
+
+            /* Importante para el swipe */
+            touch-action: pan-y;
+
+            user-select: none;
+            -webkit-user-select: none;
         }
 
-        .slider { 
-            display: flex; 
-            transition: transform 0.8s cubic-bezier(0.83, 0, 0.17, 1); 
+        .slider {
+            display: flex;
+            width: 100%;
+
+            transform: translate3d(0, 0, 0);
+
+            transition:
+                transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
+
             cursor: grab;
+
+            will-change: transform;
         }
-        
-        .slider:active { cursor: grabbing; }
+
+        .slider.dragging {
+            cursor: grabbing;
+            transition: none;
+        }
 
         .especialidad-item {
-            min-width: 100%;
-            height: 600px; /* Altura por defecto en PC */
+            flex: 0 0 100%;
+            width: 100%;
+
+            height: 600px;
+
             position: relative;
-            user-select: none;
+
+            overflow: hidden;
         }
-        
+
         .especialidad-item img {
             width: 100%;
             height: 100%;
+
             object-fit: cover;
+
             filter: grayscale(30%) brightness(80%);
-            pointer-events: none; /* Evita que la imagen interfiera con el arrastre */
+
+            display: block;
+
+            pointer-events: none;
         }
 
         .especialidad-item .label {
-            position: absolute; bottom: 50px; left: 50px;
+            position: absolute;
+
+            left: 50px;
+            bottom: 50px;
+
             background: rgba(0,0,0,0.8);
-            padding: 20px 40px; 
+
+            padding: 20px 40px;
+
             border-left: 5px solid var(--dorado-suave);
+
             z-index: 10;
+
+            font-size: 1rem;
         }
+
+        /* =========================
+           BOTONES SLIDER
+        ========================= */
 
         .slider-nav {
             position: absolute;
+
             bottom: 20px;
-            right: 50px;
+            right: 30px;
+
             display: flex;
             gap: 10px;
-            z-index: 20;
+
+            z-index: 30;
         }
 
         .slider-button {
-            background: transparent;
+            background: rgba(0,0,0,0.45);
+
             color: white;
+
             border: 1px solid white;
-            width: 50px; height: 50px;
+
+            width: 50px;
+            height: 50px;
+
             cursor: pointer;
-            transition: 0.3s;
+
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        .slider-button:hover { background: white; color: black; }
 
-        /* Sucursales & Mapa */
+            transition: background 0.3s, color 0.3s;
+
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .slider-button:hover {
+            background: white;
+            color: black;
+        }
+
+        .slider-button:active {
+            transform: scale(0.95);
+        }
+
+        /* =========================
+           SUCURSALES
+        ========================= */
+
         .grid-sucursales {
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             background: var(--gris-industrial);
+
             border: 1px solid #333;
+
             overflow: hidden;
+
             margin-top: 40px;
         }
 
-        .sucursal-info { padding: 50px; text-align: left; }
-        .sucursal-info h3 { margin: 0 0 15px 0; color: var(--accent); letter-spacing: 2px; }
-        .sucursal-info p { color: var(--gris-texto); margin: 10px 0; }
+        .sucursal-info {
+            padding: 50px;
+            text-align: left;
+        }
+
+        .sucursal-info h3 {
+            margin: 0 0 15px;
+
+            color: var(--accent);
+
+            letter-spacing: 2px;
+        }
+
+        .sucursal-info p {
+            color: var(--gris-texto);
+
+            margin: 10px 0;
+
+            line-height: 1.6;
+        }
 
         .mapa-container {
             height: 400px;
-            filter: grayscale(100%) invert(90%) contrast(90%);
+
+            filter:
+                grayscale(100%)
+                invert(90%)
+                contrast(90%);
+
             transition: 0.5s;
         }
-        .mapa-container:hover { filter: grayscale(0%) invert(0%); }
 
-        /* Botón WhatsApp */
-        .wsp {
-            position: fixed; bottom: 30px; right: 30px;
-            background: #25d366; color: white;
-            width: 60px; height: 60px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 30px; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            text-decoration: none;
+        .mapa-container:hover {
+            filter:
+                grayscale(0%)
+                invert(0%);
         }
 
-        footer { 
-            background: #000; 
+        .mapa-container iframe {
+            display: block;
+        }
+
+        /* =========================
+           WHATSAPP
+        ========================= */
+
+        .wsp {
+            position: fixed;
+
+            bottom: 25px;
+            right: 25px;
+
+            background: #25d366;
+            color: white;
+
+            width: 60px;
+            height: 60px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+
+            z-index: 1000;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.5);
+
+            text-decoration: none;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .wsp:hover {
+            transform: scale(1.08);
+
+            box-shadow:
+                0 6px 20px rgba(0,0,0,0.6);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #000;
+
             padding: 60px 20px;
+
             text-align: center;
+
             border-top: 1px solid #222;
         }
 
         .social-links a {
             color: var(--blanco-hueso);
+
             font-size: 24px;
+
             margin: 0 15px;
+
             transition: color 0.3s;
         }
-        .social-links a:hover { color: var(--dorado-suave); }
 
-        /* --- RESPONSIVE --- */
+        .social-links a:hover {
+            color: var(--dorado-suave);
+        }
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            section {
+                padding: 60px 20px;
+            }
+
+            #acerca {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .especialidad-item {
+                height: 500px;
+            }
+
+            .grid-sucursales {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* =========================
+           CELULARES
+        ========================= */
+
         @media (max-width: 768px) {
-            #acerca { grid-template-columns: 1fr; padding: 40px 20px; }
-            .hero-content h1 { font-size: 3rem; letter-spacing: 6px; }
-            .especialidad-item { height: 400px; } /* Altura más cómoda en móvil */
-            .especialidad-item .label { left: 20px; bottom: 20px; padding: 10px 20px; font-size: 0.9rem; }
-            .slider-nav { right: 20px; bottom: 15px; }
-            .grid-sucursales { grid-template-columns: 1fr; }
-            .mapa-container { height: 300px; }
-            .sucursal-info { padding: 30px; }
+
+            section {
+                padding: 50px 15px;
+            }
+
+            .hero {
+                min-height: 100svh;
+                padding: 20px;
+            }
+
+            .hero-content h1 {
+                font-size: clamp(2.8rem, 14vw, 4.5rem);
+                letter-spacing: 6px;
+            }
+
+            .hero-content p {
+                font-size: 1.15rem;
+                padding: 0 10px;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+                margin-bottom: 30px;
+            }
+
+            #acerca {
+                padding: 25px 20px;
+                gap: 25px;
+            }
+
+            .acerca-texto {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            /* Slider móvil */
+
+            .slider-container {
+                border-left: none;
+                border-right: none;
+            }
+
+            .especialidad-item {
+                height: 400px;
+            }
+
+            .especialidad-item .label {
+                left: 15px;
+                bottom: 20px;
+
+                padding: 12px 18px;
+
+                border-left-width: 4px;
+
+                font-size: 0.85rem;
+            }
+
+            .slider-nav {
+                right: 15px;
+                bottom: 15px;
+            }
+
+            .slider-button {
+                width: 44px;
+                height: 44px;
+            }
+
+            /* Sucursal */
+
+            .sucursal-info {
+                padding: 30px 25px;
+            }
+
+            .mapa-container {
+                height: 300px;
+            }
+
+            /* WhatsApp */
+
+            .wsp {
+                width: 56px;
+                height: 56px;
+
+                right: 18px;
+                bottom: 18px;
+
+                font-size: 27px;
+            }
+
+            footer {
+                padding: 45px 15px;
+            }
+        }
+
+        /* =========================
+           CELULARES PEQUEÑOS
+        ========================= */
+
+        @media (max-width: 400px) {
+
+            .hero-content h1 {
+                font-size: 2.7rem;
+                letter-spacing: 4px;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .especialidad-item {
+                height: 350px;
+            }
+
+            .slider-button {
+                width: 40px;
+                height: 40px;
+            }
+
+            .sucursal-info {
+                padding: 25px 20px;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <a href="https://wa.me/5491100000000" class="wsp" target="_blank" aria-label="WhatsApp">
+    <!-- =========================
+         WHATSAPP
+    ========================= -->
+
+    <a
+        href="https://wa.me/5491100000000?text=Hola%21%20En%20qu%C3%A9%20te%20puedo%20ayudar%3F"
+        class="wsp"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactar por WhatsApp">
+
         <i class="fab fa-whatsapp"></i>
+
     </a>
 
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
     <header class="hero">
+
         <div class="hero-content">
+
             <h1>ATHINA</h1>
-            <p>Cocina de autor & Coctelería</p>
+
+            <p>Cocina de autor &amp; Coctelería</p>
+
         </div>
+
     </header>
 
+
+    <!-- =========================
+         CONCEPTO
+    ========================= -->
+
     <section id="acerca">
+
         <div class="acerca-img">
-            <img src="img/jardin3.JPG" alt="Interior Athina" style="width:100%; border-radius: 4px; display: block;">
+
+            <img
+                src="img/jardin3.JPG"
+                alt="Interior Athina"
+                loading="lazy">
+
         </div>
+
         <div class="acerca-texto">
+
             <h2>El Concepto</h2>
-            <p>Ubicados en el pulso de <strong>Villa Ballester</strong>, Athina redefine la experiencia gastronómica urbana. Combinamos una arquitectura industrial con platos diseñados para despertar los sentidos.</p>
-            <p>Desde nuestra selección de <strong>vinos premium</strong> hasta nuestra barra de coctelería, cada detalle está pensado para quienes buscan algo más que una cena: buscan una atmósfera.</p>
+
+            <p>
+                Ubicados en el pulso de
+                <strong>Villa Ballester</strong>,
+                Athina redefine la experiencia gastronómica urbana.
+                Combinamos una arquitectura industrial con platos
+                diseñados para despertar los sentidos.
+            </p>
+
+            <p>
+                Desde nuestra selección de
+                <strong>vinos premium</strong>
+                hasta nuestra barra de coctelería,
+                cada detalle está pensado para quienes buscan algo
+                más que una cena: buscan una atmósfera.
+            </p>
+
         </div>
+
     </section>
+
+
+    <!-- =========================
+         EXPERIENCIA / SLIDER
+    ========================= -->
 
     <section id="especialidades">
+
         <h2>La Experiencia</h2>
+
         <div class="slider-container">
+
             <div class="slider">
+
                 <div class="especialidad-item">
-                    <img src="img/exterior.jpg" alt="Fachada Athina">
-                    <div class="label">Cocina de Estación</div>
+
+                    <img
+                        src="img/exterior.jpg"
+                        alt="Fachada Athina"
+                        draggable="false"
+                        loading="lazy">
+
+                    <div class="label">
+                        Cocina de Estación
+                    </div>
+
                 </div>
+
+
                 <div class="especialidad-item">
-                    <img src="img/coctel.jpg" alt="Tragos de Autor">
-                    <div class="label">Mixología de Autor</div>
+
+                    <img
+                        src="img/coctel.jpg"
+                        alt="Tragos de Autor"
+                        draggable="false"
+                        loading="lazy">
+
+                    <div class="label">
+                        Mixología de Autor
+                    </div>
+
                 </div>
+
+
                 <div class="especialidad-item">
-                    <img src="img/postre.jpg" alt="Postres Gourmet">
-                    <div class="label">Dulces Tentaciones</div>
+
+                    <img
+                        src="img/postre.jpg"
+                        alt="Postres Gourmet"
+                        draggable="false"
+                        loading="lazy">
+
+                    <div class="label">
+                        Dulces Tentaciones
+                    </div>
+
                 </div>
+
             </div>
+
+
             <div class="slider-nav">
-                <button class="slider-button prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-button next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+
+                <button
+                    type="button"
+                    class="slider-button prev"
+                    aria-label="Imagen anterior">
+
+                    <i class="fas fa-chevron-left"></i>
+
+                </button>
+
+                <button
+                    type="button"
+                    class="slider-button next"
+                    aria-label="Imagen siguiente">
+
+                    <i class="fas fa-chevron-right"></i>
+
+                </button>
+
             </div>
+
         </div>
+
     </section>
+
+
+    <!-- =========================
+         UBICACIÓN
+    ========================= -->
 
     <section id="sucursales">
+
         <h2>Ubicación</h2>
+
         <div class="grid-sucursales">
+
             <div class="sucursal-info">
+
                 <h3>ATHINA BALLESTER</h3>
-                <p><i class="fas fa-map-marker-alt" style="color:var(--dorado-suave)"></i> Lacroze 5000, Villa Ballester</p>
-                <p><i class="far fa-clock" style="color:var(--dorado-suave)"></i> Martes a Domingos | 19:00 a 01:00</p>
-                <br><br>
-                <a href="https://goo.gl/maps/tu-enlace" target="_blank" style="color: var(--dorado-suave); text-decoration: none; font-weight: bold; border: 1px solid; padding: 10px 20px; letter-spacing: 2px; display: inline-block;">VER EN MAPA</a>
+
+                <p>
+                    <i
+                        class="fas fa-map-marker-alt"
+                        style="color:var(--dorado-suave)">
+                    </i>
+
+                    Lacroze 5000, Villa Ballester
+                </p>
+
+                <p>
+                    <i
+                        class="far fa-clock"
+                        style="color:var(--dorado-suave)">
+                    </i>
+
+                    Martes a Domingos | 19:00 a 01:00
+                </p>
+
+                <br>
+
+                <a
+                    href="https://goo.gl/maps/tu-enlace"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="
+                        color:var(--dorado-suave);
+                        text-decoration:none;
+                        font-weight:bold;
+                        border:1px solid;
+                        padding:10px 20px;
+                        letter-spacing:2px;
+                        display:inline-block;
+                    ">
+
+                    VER EN MAPA
+
+                </a>
+
             </div>
+
+
             <div class="mapa-container">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3286.123456789!2d-58.5500000!3d-34.5500000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDMzJzAwLjAiUyA1OMKwMzMnMDAuMCJX!5e0!3m2!1ses!2sar!4v1620000000000!5m2!1ses!2sar" 
-                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3286.123456789!2d-58.5500000!3d-34.5500000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDMzJzAwLjAiUyA1OMKwMzMnMDAuMCJX!5e0!3m2!1ses!2sar!4v1620000000000!5m2!1ses!2sar"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
+
             </div>
+
         </div>
+
     </section>
 
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
     <footer>
+
         <div class="social-links">
-            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+
+            <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram">
+
+                <i class="fab fa-instagram"></i>
+
+            </a>
+
+            <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook">
+
+                <i class="fab fa-facebook-f"></i>
+
+            </a>
+
         </div>
-        <p style="margin-top: 30px; font-size: 0.8rem; letter-spacing: 2px; color: #555;">
-            © 2026 ATHINA RESTÓ. URBAN DINING EXPERIENCE.
+
+        <p
+            style="
+                margin-top:30px;
+                font-size:0.8rem;
+                letter-spacing:2px;
+                color:#555;
+            ">
+
+            © 2026 ATHINA RESTÓ.
+            URBAN DINING EXPERIENCE.
+
         </p>
+
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const slider = document.querySelector('.slider');
-            const items = document.querySelectorAll('.especialidad-item');
-            const prevButton = document.querySelector('.prev');
-            const nextButton = document.querySelector('.next');
-            let currentIndex = 0;
-            let startX = 0;
-            let isDragging = false;
 
-            function updateSlider() {
-                slider.style.transform = `translateX(${-currentIndex * 100}%)`;
+    <!-- =========================
+         JAVASCRIPT SLIDER
+    ========================= -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const slider = document.querySelector(".slider");
+            const sliderContainer = document.querySelector(".slider-container");
+            const items = document.querySelectorAll(".especialidad-item");
+
+            const prevButton = document.querySelector(".prev");
+            const nextButton = document.querySelector(".next");
+
+            let currentIndex = 0;
+
+            let startX = 0;
+            let currentX = 0;
+
+            let isDragging = false;
+            let hasMoved = false;
+
+            let autoPlay;
+
+
+            /* =========================
+               ACTUALIZAR SLIDER
+            ========================= */
+
+            function updateSlider(animate = true) {
+
+                slider.style.transition = animate
+                    ? "transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1)"
+                    : "none";
+
+                slider.style.transform =
+                    `translate3d(${-currentIndex * 100}%, 0, 0)`;
             }
 
-            // Botones
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % items.length;
+
+            /* =========================
+               SIGUIENTE
+            ========================= */
+
+            function nextSlide() {
+
+                currentIndex++;
+
+                if (currentIndex >= items.length) {
+                    currentIndex = 0;
+                }
+
                 updateSlider();
+
+            }
+
+
+            /* =========================
+               ANTERIOR
+            ========================= */
+
+            function previousSlide() {
+
+                currentIndex--;
+
+                if (currentIndex < 0) {
+                    currentIndex = items.length - 1;
+                }
+
+                updateSlider();
+
+            }
+
+
+            /* =========================
+               BOTONES
+            ========================= */
+
+            nextButton.addEventListener("click", function () {
+
+                nextSlide();
+
+                restartAutoPlay();
+
             });
 
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + items.length) % items.length;
-                updateSlider();
+
+            prevButton.addEventListener("click", function () {
+
+                previousSlide();
+
+                restartAutoPlay();
+
             });
 
-            // --- LÓGICA TOUCH (Móviles iOS/Android) ---
-            slider.addEventListener('touchstart', (e) => {
+
+            /* =========================
+               TOUCH
+            ========================= */
+
+            slider.addEventListener("touchstart", function (e) {
+
+                if (e.touches.length !== 1) return;
+
                 startX = e.touches[0].clientX;
-                isDragging = true;
-            }, {passive: true});
+                currentX = startX;
 
-            slider.addEventListener('touchend', (e) => {
+                isDragging = true;
+                hasMoved = false;
+
+                slider.classList.add("dragging");
+
+                stopAutoPlay();
+
+            }, { passive: true });
+
+
+            slider.addEventListener("touchmove", function (e) {
+
                 if (!isDragging) return;
+
+                currentX = e.touches[0].clientX;
+
+                const diff = currentX - startX;
+
+                if (Math.abs(diff) > 10) {
+                    hasMoved = true;
+                }
+
+                /*
+                 * No movemos el slider durante el swipe.
+                 * Esperamos al touchend para evitar conflictos
+                 * con el scroll vertical del teléfono.
+                 */
+
+            }, { passive: true });
+
+
+            slider.addEventListener("touchend", function (e) {
+
+                if (!isDragging) return;
+
                 const endX = e.changedTouches[0].clientX;
+
                 const diff = startX - endX;
 
-                if (Math.abs(diff) > 50) { // Umbral de 50px para el swipe
+                isDragging = false;
+
+                slider.classList.remove("dragging");
+
+                /*
+                 * 50px es suficiente para detectar
+                 * un swipe sin hacerlo demasiado sensible.
+                 */
+
+                if (Math.abs(diff) > 50) {
+
                     if (diff > 0) {
-                        nextButton.click();
+                        nextSlide();
                     } else {
-                        prevButton.click();
+                        previousSlide();
                     }
-                }
-                isDragging = false;
-            }, {passive: true});
 
-            // --- LÓGICA MOUSE (Opcional: Arrastre con mouse en PC) ---
-            slider.addEventListener('mousedown', (e) => {
+                } else {
+
+                    updateSlider();
+
+                }
+
+                startAutoPlay();
+
+            }, { passive: true });
+
+
+            slider.addEventListener("touchcancel", function () {
+
+                isDragging = false;
+
+                slider.classList.remove("dragging");
+
+                updateSlider();
+
+                startAutoPlay();
+
+            }, { passive: true });
+
+
+            /* =========================
+               MOUSE / DESKTOP
+            ========================= */
+
+            slider.addEventListener("mousedown", function (e) {
+
+                if (e.button !== 0) return;
+
                 startX = e.clientX;
+                currentX = startX;
+
                 isDragging = true;
+                hasMoved = false;
+
+                slider.classList.add("dragging");
+
+                stopAutoPlay();
+
+                e.preventDefault();
+
             });
 
-            window.addEventListener('mouseup', (e) => {
+
+            window.addEventListener("mousemove", function (e) {
+
                 if (!isDragging) return;
+
+                currentX = e.clientX;
+
+                const diff = currentX - startX;
+
+                if (Math.abs(diff) > 10) {
+                    hasMoved = true;
+                }
+
+            });
+
+
+            window.addEventListener("mouseup", function (e) {
+
+                if (!isDragging) return;
+
                 const endX = e.clientX;
+
                 const diff = startX - endX;
 
-                if (Math.abs(diff) > 100) {
-                    if (diff > 0) nextButton.click();
-                    else prevButton.click();
-                }
                 isDragging = false;
+
+                slider.classList.remove("dragging");
+
+                if (Math.abs(diff) > 80) {
+
+                    if (diff > 0) {
+                        nextSlide();
+                    } else {
+                        previousSlide();
+                    }
+
+                } else {
+
+                    updateSlider();
+
+                }
+
+                startAutoPlay();
+
             });
 
-            // Auto-play (se detiene si el usuario interactúa si se desea, aquí es continuo)
-            setInterval(() => {
-                if (!isDragging) nextButton.click();
-            }, 6000);
+
+            /* =========================
+               EVITAR ARRASTRE DE IMÁGENES
+            ========================= */
+
+            slider.querySelectorAll("img").forEach(function (img) {
+
+                img.addEventListener("dragstart", function (e) {
+                    e.preventDefault();
+                });
+
+            });
+
+
+            /* =========================
+               AUTOPLAY
+            ========================= */
+
+            function startAutoPlay() {
+
+                clearInterval(autoPlay);
+
+                autoPlay = setInterval(function () {
+
+                    if (!isDragging) {
+                        nextSlide();
+                    }
+
+                }, 6000);
+
+            }
+
+
+            function stopAutoPlay() {
+
+                clearInterval(autoPlay);
+
+            }
+
+
+            function restartAutoPlay() {
+
+                stopAutoPlay();
+
+                startAutoPlay();
+
+            }
+
+
+            /* =========================
+               PAUSAR AL PASAR EL MOUSE
+               SOLO EN PC
+            ========================= */
+
+            sliderContainer.addEventListener("mouseenter", function () {
+
+                if (window.matchMedia("(hover: hover)").matches) {
+                    stopAutoPlay();
+                }
+
+            });
+
+
+            sliderContainer.addEventListener("mouseleave", function () {
+
+                if (window.matchMedia("(hover: hover)").matches) {
+                    startAutoPlay();
+                }
+
+            });
+
+
+            /* =========================
+               INICIALIZAR
+            ========================= */
+
+            updateSlider(false);
+
+            startAutoPlay();
+
         });
+
     </script>
+
 </body>
 </html>
