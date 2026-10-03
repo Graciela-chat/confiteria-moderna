@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lúmina Estética | Centro de Estética y Belleza</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@1,600&display=swap"
+          rel="stylesheet">
+
+    <style>
+        :root {
+            --negro-fondo: #fbf7f5;
+            --gris-industrial: #f2e7e3;
+            --dorado-suave: #b88d83;
+            --blanco-hueso: #39302f;
+            --gris-texto: #716462;
+            --accent: #493a38;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--blanco-hueso);
+            background-color: var(--negro-fondo);
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            min-height: 100svh;
+            background:
+                linear-gradient(rgba(251,247,245,0.48), rgba(251,247,245,0.70)),
+                url('img/hero.jpg') no-repeat center center;
+            background-size: cover;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .hero-content {
+            width: 100%;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            margin: 0;
+            letter-spacing: 12px;
+            font-weight: 500;
+            color: #493a38;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #89645f;
+            margin-top: 10px;
+        }
+
+        /* =========================
+           SECCIONES
+        ========================= */
+
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin: 0 0 40px;
+        }
+
+        h2::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--dorado-suave);
+            margin: 20px auto;
+        }
+
+        /* =========================
+           ACERCA DE / CONCEPTO
+        ========================= */
+
+        #acerca {
+            background: var(--gris-industrial);
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+
+            align-items: center;
+
+            border-radius: 4px;
+        }
+
+        .acerca-img img {
+            width: 100%;
+            height: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .acerca-texto {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: var(--gris-texto);
+        }
+
+        .acerca-texto strong {
+            color: var(--blanco-hueso);
+        }
+
+        /* =========================
+           SLIDER DE SERVICIOS
+        ========================= */
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+
+            border: 1px solid #333;
+
+            touch-action: pan-y;
+
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .slider {
+            display: flex;
+            width: 100%;
+
+            transform: translate3d(0, 0, 0);
+
+            transition:
+                transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+            cursor: grab;
+
+            will-change: transform;
+        }
+
+        .slider.dragging {
+            cursor: grabbing;
+            transition: none;
+        }
+
+        .especialidad-item {
+            flex: 0 0 100%;
+            width: 100%;
+
+            height: 600px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .especialidad-item img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            filter: brightness(0.88) saturate(0.88);
+
+            display: block;
+
+            pointer-events: none;
+        }
+
+        .especialidad-item .label {
+            position: absolute;
+
+            left: 50px;
+            bottom: 50px;
+
+            background: rgba(251,247,245,0.94);
+
+            padding: 20px 30px;
+
+            border-left: 5px solid var(--dorado-suave);
+
+            z-index: 10;
+
+            max-width: 80%;
+        }
+
+        .especialidad-item .label h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: var(--blanco-hueso);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .especialidad-item .label p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: var(--gris-texto);
+        }
+
+        /* =========================
+           BOTONES SLIDER
+        ========================= */
+
+        .slider-nav {
+            position: absolute;
+
+            bottom: 20px;
+            right: 30px;
+
+            display: flex;
+            gap: 10px;
+
+            z-index: 30;
+        }
+
+        .slider-button {
+            background: rgba(251,247,245,0.92);
+
+            color: #493a38;
+
+            border: 1px solid #d9c5bf;
+
+            width: 50px;
+            height: 50px;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            transition: background 0.3s, color 0.3s;
+
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .slider-button:hover {
+            background: #493a38;
+            color: #fff;
+        }
+
+        .slider-button:active {
+            transform: scale(0.95);
+        }
+
+        /* =========================
+           UBICACIÓN / SUCURSALES
+        ========================= */
+
+        .grid-sucursales {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            background: var(--gris-industrial);
+
+            border: 1px solid #333;
+
+            overflow: hidden;
+
+            margin-top: 40px;
+        }
+
+        .sucursal-info {
+            padding: 50px;
+            text-align: left;
+        }
+
+        .sucursal-info h3 {
+            margin: 0 0 15px;
+
+            color: var(--accent);
+
+            letter-spacing: 2px;
+        }
+
+        .sucursal-info p {
+            color: var(--gris-texto);
+
+            margin: 10px 0;
+
+            line-height: 1.6;
+        }
+
+        .mapa-container {
+            height: 400px;
+
+            filter:
+                grayscale(100%)
+                invert(90%)
+                contrast(90%);
+
+            transition: 0.5s;
+        }
+
+        .mapa-container:hover {
+            filter:
+                grayscale(0%)
+                invert(0%);
+        }
+
+        .mapa-container iframe {
+            display: block;
+        }
+
+        /* =========================
+           WHATSAPP
+        ========================= */
+
+        .wsp {
+            position: fixed;
+
+            bottom: 25px;
+            right: 25px;
+
+            background: #25d366;
+            color: white;
+
+            width: 60px;
+            height: 60px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+
+            z-index: 1000;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.5);
+
+            text-decoration: none;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .wsp:hover {
+            transform: scale(1.08);
+
+            box-shadow:
+                0 6px 20px rgba(0,0,0,0.6);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #f2e7e3;
+
+            padding: 60px 20px;
+
+            text-align: center;
+
+            border-top: 1px solid #e5d6d1;
+        }
+
+        .social-links a {
+            color: var(--blanco-hueso);
+
+            font-size: 24px;
+
+            margin: 0 15px;
+
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--dorado-suave);
+        }
+
+        /* =========================
+           RESPONSIVE (TABLET / CELULARES)
+        ========================= */
+
+        @media (max-width: 900px) {
+            section {
+                padding: 60px 20px;
+            }
+
+            #acerca {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .especialidad-item {
+                height: 500px;
+            }
+
+            .grid-sucursales {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 50px 15px;
+            }
+
+            .hero {
+                min-height: 100svh;
+                padding: 20px;
+            }
+
+            .hero-content h1 {
+                font-size: clamp(2.8rem, 14vw, 4.5rem);
+                letter-spacing: 6px;
+            }
+
+            .hero-content p {
+                font-size: 1.15rem;
+                padding: 0 10px;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+                margin-bottom: 30px;
+            }
+
+            #acerca {
+                padding: 25px 20px;
+                gap: 25px;
+            }
+
+            .acerca-texto {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .slider-container {
+                border-left: none;
+                border-right: none;
+            }
+
+            .especialidad-item {
+                height: 420px;
+            }
+
+            .especialidad-item .label {
+                left: 15px;
+                bottom: 20px;
+                padding: 12px 18px;
+                border-left-width: 4px;
+                max-width: 90%;
+            }
+
+            .especialidad-item .label h3 {
+                font-size: 1.05rem;
+            }
+
+            .especialidad-item .label p {
+                font-size: 0.8rem;
+            }
+
+            .slider-nav {
+                right: 15px;
+                bottom: 15px;
+            }
+
+            .slider-button {
+                width: 44px;
+                height: 44px;
+            }
+
+            .sucursal-info {
+                padding: 30px 25px;
+            }
+
+            .mapa-container {
+                height: 300px;
+            }
+
+            .wsp {
+                width: 56px;
+                height: 56px;
+                right: 18px;
+                bottom: 18px;
+                font-size: 27px;
+            }
+
+            footer {
+                padding: 45px 15px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-content h1 {
+                font-size: 2.7rem;
+                letter-spacing: 4px;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .especialidad-item {
+                height: 380px;
+            }
+
+            .slider-button {
+                width: 40px;
+                height: 40px;
+            }
+
+            .sucursal-info {
+                padding: 25px 20px;
+            }
+        }
+
+
+        /* Ajustes visuales y de adaptación */
+        body { line-height: 1.65; }
+        section { width: min(100%, 1200px); }
+        #acerca, .grid-sucursales, .slider-container { border-radius: 14px; box-shadow: 0 12px 34px rgba(91,61,56,.08); }
+        #acerca { padding: clamp(22px, 4vw, 48px); }
+        .acerca-img img { min-height: 280px; }
+        .especialidad-item { min-width: 0; height: clamp(360px, 48vw, 600px); }
+        .especialidad-item img { object-position: center; }
+        .especialidad-item .label { border-radius: 0 10px 10px 0; box-shadow: 0 5px 20px rgba(45,30,28,.12); }
+        .slider-button { border-radius: 50%; box-shadow: 0 3px 12px rgba(45,30,28,.12); }
+        .slider-button:hover { background: #493a38; color: #fff; }
+        .sucursal-info h3 { color: #493a38; }
+        .mapa-container { filter: none; }
+        .wsp { box-shadow: 0 4px 16px rgba(0,0,0,.18); }
+        footer { color: #493a38; }
+        .social-links a { color: #493a38; }
+        @media (max-width: 768px) {
+            section { padding: 48px 16px; }
+            .hero { min-height: 82svh; background-position: center; }
+            .hero-content h1 { font-size: clamp(2.45rem, 13vw, 4rem); letter-spacing: .16em; }
+            .hero-content p { font-size: clamp(1rem, 4.5vw, 1.2rem); line-height: 1.45; }
+            h2 { font-size: clamp(1.45rem, 7vw, 1.85rem); letter-spacing: .08em; line-height: 1.25; }
+            #acerca { padding: 20px; gap: 18px; }
+            .acerca-img img { min-height: 220px; max-height: 300px; }
+            .acerca-texto { font-size: .97rem; }
+            .especialidad-item { height: clamp(350px, 112vw, 430px); }
+            .especialidad-item .label { left: 12px; bottom: 68px; max-width: calc(100% - 24px); padding: 11px 14px; }
+            .especialidad-item .label h3 { font-size: .95rem; line-height: 1.35; letter-spacing: .06em; }
+            .especialidad-item .label p { font-size: .78rem; line-height: 1.45; }
+            .slider-nav { left: auto; right: 12px; bottom: 12px; gap: 8px; }
+            .slider-button { width: 42px; height: 42px; }
+            .sucursal-info { padding: 26px 20px; }
+            .mapa-container { height: 280px; }
+            .wsp { width: 54px; height: 54px; right: 14px; bottom: 14px; font-size: 25px; }
+            footer { padding: 38px 14px; }
+        }
+        @media (max-width: 360px) {
+            .especialidad-item { height: 360px; }
+            .especialidad-item .label { bottom: 64px; }
+            .especialidad-item .label p { font-size: .73rem; }
+            .slider-button { width: 39px; height: 39px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .slider { transition: none !important; }
+            *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         WHATSAPP / RESERVAS
+    ========================= -->
+
+    <a
+        href="https://wa.me/5491100000000?text=Hola%21%20Quisiera%20consultar%20por%20los%20servicios%20y%20la%20disponibilidad%20de%20citas%20o%20turnos."
+        class="wsp"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Consultar y reservar cita o turno por WhatsApp">
+
+        <i class="fab fa-whatsapp"></i>
+
+    </a>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <h1>LÚMINA ESTÉTICA</h1>
+
+            <p>Centro de Estética &amp; Belleza</p>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         EL CONCEPTO
+    ========================= -->
+
+    <section id="acerca">
+
+        <div class="acerca-img">
+
+            <img
+                src="img/interior.jpg"
+                alt="Studio de Estética Lúmina Estética"
+                loading="lazy">
+
+        </div>
+
+        <div class="acerca-texto">
+
+            <h2>Sobre Lúmina Estética</h2>
+
+            <p>
+                Ubicados en el corazón de la ciudad, LÚMINA ESTÉTICA ofrece una atención personalizada para realzar tu belleza natural y dedicarte un momento de bienestar.
+            </p>
+
+            <p>
+                Cuidamos cada detalle, desde la <strong>manicura y pedicura</strong> hasta el <strong>diseño de cejas y pestañas</strong> y los <strong>tratamientos faciales</strong>, en un ambiente cálido, cuidado y relajante.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SERVICIOS / SLIDER
+    ========================= -->
+
+    <section id="especialidades">
+
+        <h2>Nuestros Servicios</h2>
+
+        <div class="slider-container">
+
+            <div class="slider">
+
+                <!-- Servicio 1 -->
+                <div class="especialidad-item">
+
+                    <img
+                        src="img/unas.jpg"
+                        alt="Uñas Esculpidas y Diseños"
+                        draggable="false"
+                        loading="lazy">
+
+                    <div class="label">
+                        <h3>Uñas esculpidas y Nail Art</h3>
+                        <p>Uñas en gel o acrílico, esmaltado semipermanente y diseños personalizados.</p>
+                    </div>
+
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="especialidad-item">
+
+                    <img
+                        src="img/unasspa.jpg"
+                        alt="Cuidado Spa de Manos y Pies"
+                        draggable="false"
+                        loading="lazy">
+
+                    <div class="label">
+                        <h3>Manicura y pedicura spa</h3>
+                        <p>Exfoliación, hidratación, cuidado de cutículas y masaje relajante.</p>
+                    </div>
+
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="especialidad-item">
+
+                    <img
+                        src="img/cejas.jpg"
+                        alt="Diseño de Cejas y Pestañas"
+                        draggable="false"
+                        loading="lazy">
+
+                    <div class="label">
+                        <h3>Diseño de cejas y pestañas</h3>
+                        <p>Lifting de pestañas, laminado, tinte y perfilado de cejas según tu rostro.</p>
+                    </div>
+
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="especialidad-item">
+
+                    <img
+                        src="img/facial.jpg"
+                        alt="Tratamientos Faciales"
+                        draggable="false"
+                        loading="lazy">
+
+                    <div class="label">
+                        <h3>Tratamientos faciales y depilación</h3>
+                        <p>Limpieza e hidratación facial y depilación facial con cera o hilo, según el servicio.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="slider-nav">
+
+                <button
+                    type="button"
+                    class="slider-button prev"
+                    aria-label="Servicio anterior">
+
+                    <i class="fas fa-chevron-left"></i>
+
+                </button>
+
+                <button
+                    type="button"
+                    class="slider-button next"
+                    aria-label="Servicio siguiente">
+
+                    <i class="fas fa-chevron-right"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         UBICACIÓN Y CITAS
+    ========================= -->
+
+    <section id="sucursales">
+
+        <h2>Ubicación y reservas</h2>
+
+        <div class="grid-sucursales">
+
+            <div class="sucursal-info">
+
+                <h3>LÚMINA ESTÉTICA</h3>
+
+                <p>
+                    <i
+                        class="fas fa-map-marker-alt"
+                        style="color:var(--dorado-suave)">
+                    </i>
+
+                    San Isidro
+                </p>
+
+                <p>
+                    <i
+                        class="far fa-clock"
+                        style="color:var(--dorado-suave)">
+                    </i>
+
+                    Lunes a Sábados | 09:00 a 20:00 hs
+                </p>
+
+                <p>
+                    <i
+                        class="fas fa-calendar-check"
+                        style="color:var(--dorado-suave)">
+                    </i>
+
+                    Atención personalizada con cita o turno previo.
+                </p>
+
+                <br>
+
+                <a
+                    href="https://www.google.com/maps/search/?api=1&query=Madrid%2C+Spain"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="
+                        color:var(--dorado-suave);
+                        text-decoration:none;
+                        font-weight:bold;
+                        border:1px solid;
+                        padding:10px 20px;
+                        letter-spacing:2px;
+                        display:inline-block;
+                    ">
+
+                    VER EN MAPA
+
+                </a>
+
+            </div>
+
+
+            <div class="mapa-container">
+
+                <iframe
+                    src="https://www.google.com/maps?q=Madrid%2C%20Spain&output=embed"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div class="social-links">
+
+            <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram">
+
+                <i class="fab fa-instagram"></i>
+
+            </a>
+
+            <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook">
+
+                <i class="fab fa-facebook-f"></i>
+
+            </a>
+
+        </div>
+
+        <p
+            style="
+                margin-top:30px;
+                font-size:0.8rem;
+                letter-spacing:2px;
+                color:#555;
+            ">
+
+            © 2026 LÚMINA ESTÉTICA. CENTRO DE ESTÉTICA Y BELLEZA.
+
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT SLIDER
+    ========================= -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const slider = document.querySelector(".slider");
+            const sliderContainer = document.querySelector(".slider-container");
+            const items = document.querySelectorAll(".especialidad-item");
+
+            const prevButton = document.querySelector(".prev");
+            const nextButton = document.querySelector(".next");
+
+            let currentIndex = 0;
+
+            let startX = 0;
+            let currentX = 0;
+
+            let isDragging = false;
+            let hasMoved = false;
+
+            let autoPlay;
+
+
+            /* =========================
+               ACTUALIZAR SLIDER
+            ========================= */
+
+            function updateSlider(animate = true) {
+
+                slider.style.transition = animate
+                    ? "transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1)"
+                    : "none";
+
+                slider.style.transform =
+                    `translate3d(${-currentIndex * 100}%, 0, 0)`;
+            }
+
+
+            /* =========================
+               SIGUIENTE
+            ========================= */
+
+            function nextSlide() {
+
+                currentIndex++;
+
+                if (currentIndex >= items.length) {
+                    currentIndex = 0;
+                }
+
+                updateSlider();
+
+            }
+
+
+            /* =========================
+               ANTERIOR
+            ========================= */
+
+            function previousSlide() {
+
+                currentIndex--;
+
+                if (currentIndex < 0) {
+                    currentIndex = items.length - 1;
+                }
+
+                updateSlider();
+
+            }
+
+
+            /* =========================
+               BOTONES
+            ========================= */
+
+            nextButton.addEventListener("click", function () {
+
+                nextSlide();
+
+                restartAutoPlay();
+
+            });
+
+
+            prevButton.addEventListener("click", function () {
+
+                previousSlide();
+
+                restartAutoPlay();
+
+            });
+
+
+            /* =========================
+               TOUCH / DESLIZAR
+            ========================= */
+
+            slider.addEventListener("touchstart", function (e) {
+
+                if (e.touches.length !== 1) return;
+
+                startX = e.touches[0].clientX;
+                currentX = startX;
+
+                isDragging = true;
+                hasMoved = false;
+
+                slider.classList.add("dragging");
+
+                stopAutoPlay();
+
+            }, { passive: true });
+
+
+            slider.addEventListener("touchmove", function (e) {
+
+                if (!isDragging) return;
+
+                currentX = e.touches[0].clientX;
+
+                const diff = currentX - startX;
+
+                if (Math.abs(diff) > 10) {
+                    hasMoved = true;
+                }
+
+            }, { passive: true });
+
+
+            slider.addEventListener("touchend", function (e) {
+
+                if (!isDragging) return;
+
+                const endX = e.changedTouches[0].clientX;
+
+                const diff = startX - endX;
+
+                isDragging = false;
+
+                slider.classList.remove("dragging");
+
+                if (Math.abs(diff) > 50) {
+
+                    if (diff > 0) {
+                        nextSlide();
+                    } else {
+                        previousSlide();
+                    }
+
+                } else {
+
+                    updateSlider();
+
+                }
+
+                startAutoPlay();
+
+            }, { passive: true });
+
+
+            slider.addEventListener("touchcancel", function () {
+
+                isDragging = false;
+
+                slider.classList.remove("dragging");
+
+                updateSlider();
+
+                startAutoPlay();
+
+            }, { passive: true });
+
+
+            /* =========================
+               MOUSE / DESKTOP
+            ========================= */
+
+            slider.addEventListener("mousedown", function (e) {
+
+                if (e.button !== 0) return;
+
+                startX = e.clientX;
+                currentX = startX;
+
+                isDragging = true;
+                hasMoved = false;
+
+                slider.classList.add("dragging");
+
+                stopAutoPlay();
+
+                e.preventDefault();
+
+            });
+
+
+            window.addEventListener("mousemove", function (e) {
+
+                if (!isDragging) return;
+
+                currentX = e.clientX;
+
+                const diff = currentX - startX;
+
+                if (Math.abs(diff) > 10) {
+                    hasMoved = true;
+                }
+
+            });
+
+
+            window.addEventListener("mouseup", function (e) {
+
+                if (!isDragging) return;
+
+                const endX = e.clientX;
+
+                const diff = startX - endX;
+
+                isDragging = false;
+
+                slider.classList.remove("dragging");
+
+                if (Math.abs(diff) > 80) {
+
+                    if (diff > 0) {
+                        nextSlide();
+                    } else {
+                        previousSlide();
+                    }
+
+                } else {
+
+                    updateSlider();
+
+                }
+
+                startAutoPlay();
+
+            });
+
+
+            /* =========================
+               EVITAR ARRASTRE DE IMÁGENES
+            ========================= */
+
+            slider.querySelectorAll("img").forEach(function (img) {
+
+                img.addEventListener("dragstart", function (e) {
+                    e.preventDefault();
+                });
+
+            });
+
+
+            /* =========================
+               AUTOPLAY
+            ========================= */
+
+            function startAutoPlay() {
+                clearInterval(autoPlay);
+                if (document.hidden || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+                autoPlay = setInterval(function () {
+                    if (!isDragging && !document.hidden) nextSlide();
+                }, 6000);
+            }
+
+
+            function stopAutoPlay() {
+
+                clearInterval(autoPlay);
+
+            }
+
+
+            function restartAutoPlay() {
+
+                stopAutoPlay();
+
+                startAutoPlay();
+
+            }
+
+
+            /* =========================
+               PAUSAR AL PASAR EL MOUSE EN PC
+            ========================= */
+
+            sliderContainer.addEventListener("mouseenter", function () {
+
+                if (window.matchMedia("(hover: hover)").matches) {
+                    stopAutoPlay();
+                }
+
+            });
+
+
+            sliderContainer.addEventListener("mouseleave", function () {
+
+                if (window.matchMedia("(hover: hover)").matches) {
+                    startAutoPlay();
+                }
+
+            });
+
+
+            /* =========================
+               INICIALIZAR
+            ========================= */
+
+            document.addEventListener("visibilitychange", function () {
+                if (document.hidden) stopAutoPlay();
+                else startAutoPlay();
+            });
+
+            updateSlider(false);
+            startAutoPlay();
+
+        });
+
+    </script>
+
+</body>
+</html>
