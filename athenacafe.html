@@ -7,6 +7,13 @@
     <title>ATHENA | Café & Pastelería</title>
     <meta name="description" content="ATHENA Café & Pastelería. Cafetería, pastelería y momentos para disfrutar en San Isidro y San Fernando.">
 
+    <!-- Evita que el navegador restaure una posición anterior de scroll -->
+    <script>
+        if ("scrollRestoration" in history) {
+            history.scrollRestoration = "manual";
+        }
+    </script>
+
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -52,6 +59,11 @@
         a {
             color: inherit;
         }
+
+        button {
+            font-family: inherit;
+        }
+
 
         /* =========================
            HERO
@@ -134,6 +146,7 @@
             transform: translateY(-2px);
         }
 
+
         /* =========================
            GENERAL
         ========================= */
@@ -161,6 +174,7 @@
             margin: 16px auto 0;
             border-radius: 5px;
         }
+
 
         /* =========================
            CONCEPTO
@@ -199,6 +213,7 @@
             color: var(--cafe-oscuro);
         }
 
+
         /* =========================
            SLIDER
         ========================= */
@@ -224,18 +239,42 @@
             overflow: hidden;
             border-radius: 20px;
             box-shadow: 0 15px 40px rgba(59,36,24,.15);
+
+            /*
+             * Permite el scroll vertical de la página,
+             * mientras JavaScript controla el movimiento horizontal.
+             */
             touch-action: pan-y;
+
             user-select: none;
             -webkit-user-select: none;
+            -webkit-touch-callout: none;
+
+            /*
+             * Evita comportamientos laterales extraños
+             * en algunos navegadores móviles.
+             */
+            overscroll-behavior-x: contain;
         }
 
         .slider {
             display: flex;
             width: 100%;
+
             transform: translate3d(0, 0, 0);
-            transition: transform .55s cubic-bezier(.25,.8,.25,1);
+
+            transition:
+                transform .55s cubic-bezier(.25,.8,.25,1);
+
             cursor: grab;
+
             will-change: transform;
+
+            /*
+             * Importante para que las imágenes no sean
+             * arrastradas como imágenes independientes.
+             */
+            -webkit-user-drag: none;
         }
 
         .slider.dragging {
@@ -255,7 +294,11 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(transparent 45%, rgba(43,24,15,.72));
+            background:
+                linear-gradient(
+                    transparent 45%,
+                    rgba(43,24,15,.72)
+                );
             pointer-events: none;
         }
 
@@ -264,7 +307,13 @@
             height: 100%;
             object-fit: cover;
             display: block;
+
+            /*
+             * La imagen no captura los eventos del mouse/touch.
+             */
             pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
         }
 
         .especialidad-item .label {
@@ -272,40 +321,79 @@
             left: 35px;
             bottom: 35px;
             z-index: 10;
+
             color: white;
+
             font-family: 'Playfair Display', serif;
             font-size: clamp(1.35rem, 3vw, 2rem);
-            text-shadow: 0 2px 8px rgba(0,0,0,.35);
+
+            text-shadow:
+                0 2px 8px rgba(0,0,0,.35);
+
+            pointer-events: none;
         }
 
         .slider-nav {
             position: absolute;
             bottom: 25px;
             right: 28px;
+
             display: flex;
             gap: 9px;
-            z-index: 30;
+
+            z-index: 100;
+
+            /*
+             * Fundamental para que los botones reciban
+             * los toques aunque estén encima del slider.
+             */
+            pointer-events: auto;
         }
 
         .slider-button {
+            position: relative;
+            z-index: 101;
+
             background: rgba(59,36,24,.72);
             color: white;
+
             border: 1px solid rgba(255,255,255,.75);
+
             width: 45px;
             height: 45px;
+
             border-radius: 50%;
+
             cursor: pointer;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background .25s, transform .2s;
+
+            transition:
+                background .25s,
+                transform .2s;
+
             -webkit-tap-highlight-color: transparent;
+
+            /*
+             * El botón debe responder inmediatamente
+             * al toque y no intentar desplazar la página.
+             */
+            touch-action: manipulation;
+
+            pointer-events: auto;
         }
 
         .slider-button:hover {
             background: var(--cafe-oscuro);
             transform: scale(1.04);
         }
+
+        .slider-button:active {
+            transform: scale(.96);
+        }
+
 
         /* =========================
            MENU
@@ -372,6 +460,7 @@
             transform: translateY(-2px);
         }
 
+
         /* =========================
            SUCURSALES
         ========================= */
@@ -380,8 +469,12 @@
             background: var(--crema);
             max-width: none;
             width: 100%;
-            padding-left: max(20px, calc((100% - 1160px) / 2));
-            padding-right: max(20px, calc((100% - 1160px) / 2));
+
+            padding-left:
+                max(20px, calc((100% - 1160px) / 2));
+
+            padding-right:
+                max(20px, calc((100% - 1160px) / 2));
         }
 
         .sucursales-inner {
@@ -399,7 +492,10 @@
             background: var(--blanco);
             border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(59,36,24,.10);
+
+            box-shadow:
+                0 10px 30px rgba(59,36,24,.10);
+
             border: 1px solid var(--beige);
         }
 
@@ -437,8 +533,10 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+
             padding: 11px 16px;
             border-radius: 25px;
+
             text-decoration: none;
             font-weight: 700;
             font-size: .9rem;
@@ -466,6 +564,7 @@
             height: 100%;
             border: 0;
         }
+
 
         /* =========================
            FOOTER
@@ -506,11 +605,13 @@
             opacity: .7;
         }
 
+
         /* =========================
            RESPONSIVE
         ========================= */
 
         @media (max-width: 900px) {
+
             #acerca,
             .sucursales-grid {
                 grid-template-columns: 1fr;
@@ -521,7 +622,9 @@
             }
         }
 
+
         @media (max-width: 768px) {
+
             section {
                 width: min(100% - 30px, 700px);
                 padding: 55px 0;
@@ -567,6 +670,9 @@
                 margin-left: auto;
             }
 
+
+            /* SLIDER MOBILE */
+
             #experiencia {
                 padding-left: 0;
                 padding-right: 0;
@@ -601,9 +707,15 @@
                 height: 41px;
             }
 
+
+            /* MENU */
+
             .menu-grid {
                 grid-template-columns: 1fr;
             }
+
+
+            /* SUCURSALES */
 
             #sucursales {
                 padding-left: 15px;
@@ -619,7 +731,9 @@
             }
         }
 
+
         @media (max-width: 400px) {
+
             .especialidad-item {
                 height: 340px;
             }
@@ -635,6 +749,7 @@
     </style>
 </head>
 
+
 <body>
 
     <!-- =========================
@@ -642,22 +757,35 @@
     ========================= -->
 
     <header class="hero">
+
         <div class="hero-content">
-            <div class="eyebrow">Café · Pastelería · Momentos</div>
+
+            <div class="eyebrow">
+                Café · Pastelería · Momentos
+            </div>
+
             <h1>ATHENA</h1>
-            <p>Café &amp; Pastelería</p>
+
+            <p>
+                Café &amp; Pastelería
+            </p>
 
             <div class="hero-buttons">
+
                 <a href="#menu" class="hero-button primary">
                     <i class="fas fa-book-open"></i>
                     Ver menú
                 </a>
+
                 <a href="#sucursales" class="hero-button secondary">
                     <i class="fas fa-location-dot"></i>
                     Nuestras sucursales
                 </a>
+
             </div>
+
         </div>
+
     </header>
 
 
@@ -668,14 +796,20 @@
     <section id="acerca">
 
         <div class="acerca-img">
+
             <img
                 src="img/interior_pasteleria.jpg"
                 alt="Interior de ATHENA Café & Pastelería"
                 loading="lazy">
+
         </div>
 
+
         <div class="acerca-texto">
-            <h2>Un lugar para disfrutar</h2>
+
+            <h2>
+                Un lugar para disfrutar
+            </h2>
 
             <p>
                 En <strong>ATHENA</strong> creemos que un buen café puede convertirse
@@ -687,6 +821,7 @@
                 Un espacio cálido para desayunar, merendar, encontrarte con amigos
                 o simplemente hacer una pausa y disfrutar algo rico.
             </p>
+
         </div>
 
     </section>
@@ -698,13 +833,19 @@
 
     <section id="experiencia">
 
-        <h2>Nuestra propuesta</h2>
+        <h2>
+            Nuestra propuesta
+        </h2>
+
 
         <div class="slider-container">
 
             <div class="slider">
 
+                <!-- SLIDE 1 -->
+
                 <div class="especialidad-item">
+
                     <img
                         src="img/cafe.jpg"
                         alt="Café y propuestas de ATHENA"
@@ -714,21 +855,31 @@
                     <div class="label">
                         Café recién preparado
                     </div>
+
                 </div>
 
+
+                <!-- SLIDE 2 -->
+
                 <div class="especialidad-item">
+
                     <img
                         src="img/desayunos.jpg"
-                        alt="Desayunos y Meriendas de ATHENA"
+                        alt="Desayunos y meriendas de ATHENA"
                         draggable="false"
                         loading="lazy">
 
                     <div class="label">
                         Desayunos y meriendas gourmet
                     </div>
+
                 </div>
 
+
+                <!-- SLIDE 3 -->
+
                 <div class="especialidad-item">
+
                     <img
                         src="img/tortas1.jpg"
                         alt="Pastelería y postres de ATHENA"
@@ -738,18 +889,35 @@
                     <div class="label">
                         Pastelería y cosas ricas
                     </div>
+
                 </div>
 
             </div>
 
+
+            <!-- BOTONES -->
+
             <div class="slider-nav">
-                <button type="button" class="slider-button prev" aria-label="Imagen anterior">
+
+                <button
+                    type="button"
+                    class="slider-button prev"
+                    aria-label="Imagen anterior">
+
                     <i class="fas fa-chevron-left"></i>
+
                 </button>
 
-                <button type="button" class="slider-button next" aria-label="Imagen siguiente">
+
+                <button
+                    type="button"
+                    class="slider-button next"
+                    aria-label="Imagen siguiente">
+
                     <i class="fas fa-chevron-right"></i>
+
                 </button>
+
             </div>
 
         </div>
@@ -758,50 +926,77 @@
 
 
     <!-- =========================
-         MENÚ
+         MENU
     ========================= -->
 
     <section id="menu">
 
-        <h2>Nuestro menú</h2>
+        <h2>
+            Nuestro menú
+        </h2>
 
         <p class="menu-intro">
             Consultá nuestra carta de café, pastelería y propuestas para disfrutar
             en cada sucursal.
         </p>
 
+
         <div class="menu-grid">
 
-            <div class="menu-card">
-                <i class="fas fa-mug-hot"></i>
-                <h3>San Isidro</h3>
-                <p>Menú de nuestra sucursal de San Isidro.</p>
 
-                <!-- Reemplazar el PDF manteniendo este mismo nombre -->
+            <!-- SAN ISIDRO -->
+
+            <div class="menu-card">
+
+                <i class="fas fa-mug-hot"></i>
+
+                <h3>
+                    San Isidro
+                </h3>
+
+                <p>
+                    Menú de nuestra sucursal de San Isidro.
+                </p>
+
                 <a
                     href="menu/Athena_MenuSanIsidro.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="menu-button">
+
                     <i class="fas fa-file-pdf"></i>
                     Ver menú
+
                 </a>
+
             </div>
 
-            <div class="menu-card">
-                <i class="fas fa-mug-hot"></i>
-                <h3>San Fernando</h3>
-                <p>Menú de nuestra sucursal de San Fernando.</p>
 
-                <!-- Reemplazar el PDF manteniendo este mismo nombre -->
+            <!-- SAN FERNANDO -->
+
+            <div class="menu-card">
+
+                <i class="fas fa-mug-hot"></i>
+
+                <h3>
+                    San Fernando
+                </h3>
+
+                <p>
+                    Menú de nuestra sucursal de San Fernando.
+                </p>
+
                 <a
                     href="menu/Athena_MenuSanFernando.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="menu-button">
+
                     <i class="fas fa-file-pdf"></i>
                     Ver menú
+
                 </a>
+
             </div>
 
         </div>
@@ -817,16 +1012,25 @@
 
         <div class="sucursales-inner">
 
-            <h2>Visitános</h2>
+            <h2>
+                Visitános
+            </h2>
+
 
             <div class="sucursales-grid">
 
-                <!-- SAN ISIDRO -->
+
+                <!-- =====================
+                     SAN ISIDRO
+                ====================== -->
+
                 <article class="sucursal">
 
                     <div class="sucursal-info">
 
-                        <h3>San Isidro</h3>
+                        <h3>
+                            San Isidro
+                        </h3>
 
                         <p>
                             <i class="fas fa-location-dot"></i>
@@ -838,6 +1042,7 @@
                             Consultá nuestros horarios por WhatsApp.
                         </p>
 
+
                         <div class="sucursal-actions">
 
                             <a
@@ -845,50 +1050,66 @@
                                 class="action-wsp"
                                 target="_blank"
                                 rel="noopener noreferrer">
+
                                 <i class="fab fa-whatsapp"></i>
                                 WhatsApp
+
                             </a>
 
+
                             <a
-                                href="menu/menu-san-isidro.pdf"
+                                href="menu/Athena_MenuSanIsidro.pdf"
                                 class="action-menu"
                                 target="_blank"
                                 rel="noopener noreferrer">
+
                                 <i class="fas fa-book-open"></i>
                                 Ver menú
+
                             </a>
+
 
                             <a
                                 href="https://www.google.com/maps/search/?api=1&query=San+Isidro,+Buenos+Aires"
                                 class="action-menu"
                                 target="_blank"
                                 rel="noopener noreferrer">
+
                                 <i class="fas fa-map-marker-alt"></i>
                                 Cómo llegar
+
                             </a>
 
                         </div>
 
                     </div>
 
+
                     <div class="mapa-container">
+
                         <iframe
                             src="https://www.google.com/maps?q=San%20Isidro%2C%20Buenos%20Aires&output=embed"
                             loading="lazy"
                             allowfullscreen=""
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
+
                     </div>
 
                 </article>
 
 
-                <!-- SAN FERNANDO -->
+                <!-- =====================
+                     SAN FERNANDO
+                ====================== -->
+
                 <article class="sucursal">
 
                     <div class="sucursal-info">
 
-                        <h3>San Fernando</h3>
+                        <h3>
+                            San Fernando
+                        </h3>
 
                         <p>
                             <i class="fas fa-location-dot"></i>
@@ -900,6 +1121,7 @@
                             Consultá nuestros horarios por WhatsApp.
                         </p>
 
+
                         <div class="sucursal-actions">
 
                             <a
@@ -907,39 +1129,50 @@
                                 class="action-wsp"
                                 target="_blank"
                                 rel="noopener noreferrer">
+
                                 <i class="fab fa-whatsapp"></i>
                                 WhatsApp
+
                             </a>
 
+
                             <a
-                                href="menu/menu-san-fernando.pdf"
+                                href="menu/Athena_MenuSanFernando.pdf"
                                 class="action-menu"
                                 target="_blank"
                                 rel="noopener noreferrer">
+
                                 <i class="fas fa-book-open"></i>
                                 Ver menú
+
                             </a>
+
 
                             <a
                                 href="https://www.google.com/maps/search/?api=1&query=San+Fernando,+Buenos+Aires"
                                 class="action-menu"
                                 target="_blank"
                                 rel="noopener noreferrer">
+
                                 <i class="fas fa-map-marker-alt"></i>
                                 Cómo llegar
+
                             </a>
 
                         </div>
 
                     </div>
 
+
                     <div class="mapa-container">
+
                         <iframe
                             src="https://www.google.com/maps?q=San%20Fernando%2C%20Buenos%20Aires&output=embed"
                             loading="lazy"
                             allowfullscreen=""
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
+
                     </div>
 
                 </article>
@@ -957,23 +1190,34 @@
 
     <footer>
 
-        <div class="footer-name">ATHENA Café &amp; Pastelería</div>
+        <div class="footer-name">
+            ATHENA Café &amp; Pastelería
+        </div>
+
 
         <div class="social-links">
+
             <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram">
+
                 <i class="fab fa-instagram"></i>
+
             </a>
+
 
             <a
                 href="#"
                 aria-label="Facebook">
+
                 <i class="fab fa-facebook-f"></i>
+
             </a>
+
         </div>
+
 
         <p class="footer-copy">
             © 2026 ATHENA Café &amp; Pastelería · San Isidro · San Fernando
@@ -983,165 +1227,609 @@
 
 
     <!-- =========================
-         JAVASCRIPT SLIDER
+         JAVASCRIPT
+         SLIDER
     ========================= -->
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
 
+            /*
+             * ==========================================
+             * EVITAR QUE LA PÁGINA ARRANQUE EN UNA
+             * POSICIÓN ANTERIOR DE SCROLL
+             * ==========================================
+             */
+
+            if ("scrollRestoration" in history) {
+                history.scrollRestoration = "manual";
+            }
+
+            if (!window.location.hash) {
+                window.scrollTo(0, 0);
+            }
+
+
+            /*
+             * ==========================================
+             * ELEMENTOS DEL SLIDER
+             * ==========================================
+             */
+
             const slider = document.querySelector(".slider");
-            const sliderContainer = document.querySelector(".slider-container");
-            const items = document.querySelectorAll(".especialidad-item");
-            const prevButton = document.querySelector(".prev");
-            const nextButton = document.querySelector(".next");
+            const sliderContainer =
+                document.querySelector(".slider-container");
+
+            const slides =
+                document.querySelectorAll(".especialidad-item");
+
+            const prevButton =
+                document.querySelector(".slider-button.prev");
+
+            const nextButton =
+                document.querySelector(".slider-button.next");
+
+
+            /*
+             * Si por algún motivo el slider no existe,
+             * no ejecutamos nada más.
+             */
+
+            if (
+                !slider ||
+                !sliderContainer ||
+                slides.length === 0
+            ) {
+                return;
+            }
+
+
+            /*
+             * ==========================================
+             * VARIABLES
+             * ==========================================
+             */
 
             let currentIndex = 0;
+
+            let autoPlay = null;
+
             let startX = 0;
             let currentX = 0;
-            let isDragging = false;
-            let autoPlay;
 
-            function updateSlider(animate = true) {
+            let isDragging = false;
+
+            let activePointerId = null;
+
+
+            /*
+             * ==========================================
+             * MOSTRAR SLIDE
+             * ==========================================
+             */
+
+            function showSlide(index, animate = true) {
+
+                /*
+                 * Loop circular
+                 */
+
+                if (index < 0) {
+                    index = slides.length - 1;
+                }
+
+                if (index >= slides.length) {
+                    index = 0;
+                }
+
+
+                currentIndex = index;
+
+
+                /*
+                 * Activamos o desactivamos la transición
+                 */
+
                 slider.style.transition = animate
-                    ? "transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1)"
+                    ? "transform 0.55s cubic-bezier(.25,.8,.25,1)"
                     : "none";
 
+
+                /*
+                 * Cada slide ocupa exactamente 100%.
+                 */
+
                 slider.style.transform =
-                    `translate3d(${-currentIndex * 100}%, 0, 0)`;
+                    "translate3d(-" +
+                    (currentIndex * 100) +
+                    "%, 0, 0)";
             }
+
+
+            /*
+             * ==========================================
+             * SIGUIENTE
+             * ==========================================
+             */
 
             function nextSlide() {
-                currentIndex = (currentIndex + 1) % items.length;
-                updateSlider();
+
+                showSlide(currentIndex + 1);
+
+                restartAutoPlay();
             }
+
+
+            /*
+             * ==========================================
+             * ANTERIOR
+             * ==========================================
+             */
 
             function previousSlide() {
-                currentIndex = (currentIndex - 1 + items.length) % items.length;
-                updateSlider();
+
+                showSlide(currentIndex - 1);
+
+                restartAutoPlay();
             }
 
-            nextButton.addEventListener("click", function () {
-                nextSlide();
-                restartAutoPlay();
-            });
 
-            prevButton.addEventListener("click", function () {
-                previousSlide();
-                restartAutoPlay();
-            });
+            /*
+             * ==========================================
+             * BOTÓN ANTERIOR
+             * ==========================================
+             */
 
-            slider.addEventListener("touchstart", function (e) {
-                if (e.touches.length !== 1) return;
+            if (prevButton) {
 
-                startX = e.touches[0].clientX;
-                currentX = startX;
-                isDragging = true;
-                slider.classList.add("dragging");
-                stopAutoPlay();
-            }, { passive: true });
+                prevButton.addEventListener(
+                    "click",
+                    function (event) {
 
-            slider.addEventListener("touchmove", function (e) {
-                if (!isDragging) return;
-                currentX = e.touches[0].clientX;
-            }, { passive: true });
+                        event.preventDefault();
+                        event.stopPropagation();
 
-            slider.addEventListener("touchend", function (e) {
-                if (!isDragging) return;
+                        previousSlide();
+                    }
+                );
+            }
 
-                const endX = e.changedTouches[0].clientX;
-                const diff = startX - endX;
 
-                isDragging = false;
-                slider.classList.remove("dragging");
+            /*
+             * ==========================================
+             * BOTÓN SIGUIENTE
+             * ==========================================
+             */
 
-                if (Math.abs(diff) > 50) {
-                    diff > 0 ? nextSlide() : previousSlide();
-                } else {
-                    updateSlider();
+            if (nextButton) {
+
+                nextButton.addEventListener(
+                    "click",
+                    function (event) {
+
+                        event.preventDefault();
+                        event.stopPropagation();
+
+                        nextSlide();
+                    }
+                );
+            }
+
+
+            /*
+             * ==========================================
+             * POINTER DOWN
+             *
+             * Funciona tanto para:
+             *
+             * - celular
+             * - tablet
+             * - mouse
+             * - trackpad
+             *
+             * ==========================================
+             */
+
+            sliderContainer.addEventListener(
+                "pointerdown",
+                function (event) {
+
+                    /*
+                     * Si el toque empezó sobre un botón,
+                     * no iniciamos el drag.
+                     */
+
+                    if (
+                        event.target.closest(".slider-button")
+                    ) {
+                        return;
+                    }
+
+
+                    /*
+                     * Solo botón principal del mouse.
+                     */
+
+                    if (
+                        event.pointerType === "mouse" &&
+                        event.button !== 0
+                    ) {
+                        return;
+                    }
+
+
+                    startX = event.clientX;
+                    currentX = event.clientX;
+
+                    isDragging = true;
+
+                    activePointerId = event.pointerId;
+
+
+                    slider.classList.add("dragging");
+
+
+                    /*
+                     * Pausamos autoplay durante el gesto.
+                     */
+
+                    stopAutoPlay();
+
+
+                    /*
+                     * Capturamos el puntero.
+                     * Esto evita perder el movimiento
+                     * si el dedo/mouse sale ligeramente
+                     * del slider.
+                     */
+
+                    if (
+                        sliderContainer.setPointerCapture
+                    ) {
+
+                        try {
+                            sliderContainer.setPointerCapture(
+                                event.pointerId
+                            );
+                        } catch (error) {
+                            // No hacemos nada si el navegador
+                            // no permite capturar el puntero.
+                        }
+                    }
+
+                }
+            );
+
+
+            /*
+             * ==========================================
+             * POINTER MOVE
+             * ==========================================
+             */
+
+            sliderContainer.addEventListener(
+                "pointermove",
+                function (event) {
+
+                    if (!isDragging) {
+                        return;
+                    }
+
+                    if (
+                        activePointerId !== null &&
+                        event.pointerId !== activePointerId
+                    ) {
+                        return;
+                    }
+
+
+                    currentX = event.clientX;
+
+                }
+            );
+
+
+            /*
+             * ==========================================
+             * FINALIZAR DRAG
+             * ==========================================
+             */
+
+            function finishDrag(event) {
+
+                if (!isDragging) {
+                    return;
                 }
 
-                startAutoPlay();
-            }, { passive: true });
 
-            slider.addEventListener("touchcancel", function () {
-                isDragging = false;
-                slider.classList.remove("dragging");
-                updateSlider();
-                startAutoPlay();
-            }, { passive: true });
-
-            slider.addEventListener("mousedown", function (e) {
-                if (e.button !== 0) return;
-
-                startX = e.clientX;
-                currentX = startX;
-                isDragging = true;
-                slider.classList.add("dragging");
-                stopAutoPlay();
-                e.preventDefault();
-            });
-
-            window.addEventListener("mousemove", function (e) {
-                if (!isDragging) return;
-                currentX = e.clientX;
-            });
-
-            window.addEventListener("mouseup", function (e) {
-                if (!isDragging) return;
-
-                const endX = e.clientX;
-                const diff = startX - endX;
-
-                isDragging = false;
-                slider.classList.remove("dragging");
-
-                if (Math.abs(diff) > 80) {
-                    diff > 0 ? nextSlide() : previousSlide();
-                } else {
-                    updateSlider();
+                if (
+                    activePointerId !== null &&
+                    event.pointerId !== activePointerId
+                ) {
+                    return;
                 }
 
+
+                const difference =
+                    startX - currentX;
+
+
+                isDragging = false;
+
+                activePointerId = null;
+
+                slider.classList.remove("dragging");
+
+
+                /*
+                 * Umbral de desplazamiento.
+                 *
+                 * 50px funciona bien en celulares.
+                 */
+
+                if (Math.abs(difference) > 50) {
+
+                    if (difference > 0) {
+
+                        /*
+                         * Deslizamiento hacia la izquierda
+                         */
+                        showSlide(currentIndex + 1);
+
+                    } else {
+
+                        /*
+                         * Deslizamiento hacia la derecha
+                         */
+                        showSlide(currentIndex - 1);
+                    }
+
+                } else {
+
+                    /*
+                     * Si el movimiento fue muy pequeño,
+                     * volvemos a la posición actual.
+                     */
+
+                    showSlide(currentIndex);
+                }
+
+
                 startAutoPlay();
+            }
+
+
+            /*
+             * ==========================================
+             * POINTER UP
+             * ==========================================
+             */
+
+            sliderContainer.addEventListener(
+                "pointerup",
+                function (event) {
+
+                    finishDrag(event);
+
+                }
+            );
+
+
+            /*
+             * ==========================================
+             * POINTER CANCEL
+             * ==========================================
+             */
+
+            sliderContainer.addEventListener(
+                "pointercancel",
+                function (event) {
+
+                    if (!isDragging) {
+                        return;
+                    }
+
+                    isDragging = false;
+
+                    activePointerId = null;
+
+                    slider.classList.remove("dragging");
+
+                    showSlide(currentIndex);
+
+                    startAutoPlay();
+
+                }
+            );
+
+
+            /*
+             * ==========================================
+             * POINTER LEAVE
+             *
+             * Útil principalmente con mouse.
+             * ==========================================
+             */
+
+            sliderContainer.addEventListener(
+                "pointerleave",
+                function (event) {
+
+                    /*
+                     * En touch no finalizamos el gesto acá,
+                     * porque pointer capture puede mantenerlo.
+                     */
+
+                    if (
+                        event.pointerType === "mouse" &&
+                        isDragging
+                    ) {
+
+                        finishDrag(event);
+                    }
+
+                }
+            );
+
+
+            /*
+             * ==========================================
+             * EVITAR DRAG DE IMÁGENES
+             * ==========================================
+             */
+
+            slides.forEach(function (slide) {
+
+                const image =
+                    slide.querySelector("img");
+
+                if (image) {
+
+                    image.addEventListener(
+                        "dragstart",
+                        function (event) {
+
+                            event.preventDefault();
+
+                        }
+                    );
+
+                }
+
             });
 
-            slider.querySelectorAll("img").forEach(function (img) {
-                img.addEventListener("dragstart", function (e) {
-                    e.preventDefault();
-                });
-            });
+
+            /*
+             * ==========================================
+             * AUTOPLAY
+             * ==========================================
+             */
 
             function startAutoPlay() {
-                clearInterval(autoPlay);
 
-                autoPlay = setInterval(function () {
-                    if (!isDragging) nextSlide();
-                }, 6000);
+                stopAutoPlay();
+
+
+                autoPlay = setInterval(
+                    function () {
+
+                        if (!isDragging) {
+                            showSlide(currentIndex + 1);
+                        }
+
+                    },
+                    6000
+                );
             }
+
+
+            /*
+             * ==========================================
+             * DETENER AUTOPLAY
+             * ==========================================
+             */
 
             function stopAutoPlay() {
-                clearInterval(autoPlay);
+
+                if (autoPlay !== null) {
+
+                    clearInterval(autoPlay);
+
+                    autoPlay = null;
+                }
             }
 
+
+            /*
+             * ==========================================
+             * REINICIAR AUTOPLAY
+             * ==========================================
+             */
+
             function restartAutoPlay() {
+
                 stopAutoPlay();
+
                 startAutoPlay();
             }
 
-            sliderContainer.addEventListener("mouseenter", function () {
-                if (window.matchMedia("(hover: hover)").matches) {
-                    stopAutoPlay();
-                }
-            });
 
-            sliderContainer.addEventListener("mouseleave", function () {
-                if (window.matchMedia("(hover: hover)").matches) {
-                    startAutoPlay();
-                }
-            });
+            /*
+             * ==========================================
+             * PAUSA CON MOUSE
+             * ==========================================
+             */
 
-            updateSlider(false);
+            sliderContainer.addEventListener(
+                "mouseenter",
+                function () {
+
+                    if (
+                        window.matchMedia(
+                            "(hover: hover)"
+                        ).matches
+                    ) {
+
+                        stopAutoPlay();
+                    }
+
+                }
+            );
+
+
+            sliderContainer.addEventListener(
+                "mouseleave",
+                function () {
+
+                    if (
+                        window.matchMedia(
+                            "(hover: hover)"
+                        ).matches
+                    ) {
+
+                        startAutoPlay();
+                    }
+
+                }
+            );
+
+
+            /*
+             * ==========================================
+             * INICIALIZAR
+             * ==========================================
+             */
+
+            showSlide(0, false);
+
             startAutoPlay();
+
         });
+
+
+        /*
+         * ==========================================
+         * ASEGURAR QUE LA PÁGINA ARRANQUE ARRIBA
+         * ==========================================
+         */
+
+        window.addEventListener("load", function () {
+
+            if (!window.location.hash) {
+                window.scrollTo(0, 0);
+            }
+
+        });
+
+
+        window.addEventListener("pageshow", function () {
+
+            if (!window.location.hash) {
+                window.scrollTo(0, 0);
+            }
+
+        });
+
     </script>
 
 </body>
