@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="color-scheme" content="light">
+    <title>Mora | Pilates & Yoga Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* RESET Y VARIABLES DE COLOR - ESTUDIO MORA */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --mora-principal: #5e3a4d;
+            --mora-oscuro: #3d2332;
+            --mora-suave: #f7f1f4;
+            --verde-salvia: #8f9e8b;
+            --rosa-arena: #f2e2d8;
+            --blanco: #ffffff;
+            --gris-claro: #fbf9fa;
+            --texto-oscuro: #2d282a;
+            --texto-mutado: #6e6469;
+            --verde-wsp: #25d366;
+        }
+
+        html {
+            background: #ffffff !important;
+            color-scheme: light;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--texto-oscuro);
+            background: #ffffff !important;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            html, body {
+                background: #ffffff !important;
+                color: var(--texto-oscuro) !important;
+            }
+        }
+
+        h1, h2, h3, .label { font-family: 'Playfair Display', serif; }
+
+        /* UTILIDADES BOTONES */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--mora-principal);
+            color: var(--blanco);
+            padding: 15px 35px;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(94, 58, 77, 0.25);
+            border: none;
+            cursor: pointer;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .cta-button:hover {
+            background: var(--mora-oscuro);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(94, 58, 77, 0.35);
+        }
+
+        .cta-wsp {
+            background: var(--verde-wsp) !important;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3) !important;
+        }
+
+        .cta-wsp:hover {
+            background: #1eb956 !important;
+            transform: translateY(-3px);
+        }
+
+        /* SLIDER PRINCIPAL (HERO) */
+        .hero-slider-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 540px;
+            touch-action: pan-y;
+            background: #ffffff;
+        }
+
+        .slider {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.55s ease-in-out;
+            will-change: transform;
+        }
+
+        .slide-item {
+            flex: 0 0 100%;
+            min-width: 100%;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(61, 35, 50, 0.45) 0%, rgba(45, 40, 42, 0.55) 100%);
+            z-index: 1;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            color: var(--blanco);
+            max-width: 750px;
+            padding: 20px;
+            margin-top: 35px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+        }
+
+        .studio-brand {
+            position: absolute;
+            top: 18px;
+            left: 24px;
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 20px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.95);
+            color: var(--mora-oscuro);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            white-space: nowrap;
+            backdrop-filter: blur(5px);
+        }
+
+        .studio-brand i {
+            color: var(--mora-principal);
+            font-size: 1.1rem;
+        }
+
+        .slide-content h1 {
+            font-size: clamp(2.2rem, 4.8vw, 3.6rem);
+            line-height: 1.18;
+            margin-bottom: 16px;
+            font-weight: 400;
+        }
+
+        .slide-content h1 span {
+            color: var(--rosa-arena);
+            font-style: italic;
+        }
+
+        .slide-content p {
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+
+        .slider-nav {
+            position: absolute;
+            bottom: 22px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .slider-button {
+            background: rgba(255,255,255,0.85);
+            color: var(--mora-oscuro);
+            border: none;
+            width: 42px;
+            height: 42px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: 0.25s;
+            pointer-events: auto;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .slider-button:hover {
+            background: var(--mora-principal);
+            color: var(--blanco);
+        }
+
+        /* BARRA DE ESTADÍSTICAS / CARACTERÍSTICAS */
+        .stats-bar {
+            background: var(--mora-oscuro);
+            color: var(--blanco);
+            display: flex;
+            justify-content: space-around;
+            padding: 45px 20px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .stat-item { text-align: center; flex: 1; min-width: 200px; }
+        .stat-item i { color: var(--rosa-arena); font-size: 2.2rem; margin-bottom: 15px; }
+        .stat-item div { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+        .stat-item p { font-size: 0.9rem; color: #d4c5ce; margin-top: 5px; font-weight: 300; }
+
+        /* SECCIONES GENERALES */
+        section { padding: 90px 20px; max-width: 1200px; margin: auto; }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--mora-oscuro);
+            font-weight: 400;
+        }
+        h2::after {
+            content: ""; display: block; width: 50px; height: 3px;
+            background: var(--mora-principal); margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ACERCA DE */
+        #acerca { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .acerca-img img { width: 100%; border-radius: 20px; display: block; box-shadow: 0 12px 35px rgba(0,0,0,0.08); }
+        .acerca-texto p { font-size: 1.08rem; line-height: 1.8; margin-bottom: 20px; color: var(--texto-mutado); }
+        .acerca-texto strong { color: var(--mora-oscuro); }
+
+        /* ESPECIALIDADES (GRID) */
+        .grid-especialidades {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card-especialidad {
+            background: var(--gris-claro);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+        }
+
+        .card-especialidad:hover {
+            transform: translateY(-8px);
+            background: var(--blanco);
+            box-shadow: 0 15px 35px rgba(94, 58, 77, 0.08);
+            border-bottom: 4px solid var(--mora-principal);
+        }
+
+        .card-especialidad i {
+            font-size: 3rem;
+            color: var(--mora-principal);
+            margin-bottom: 20px;
+        }
+
+        .card-especialidad h3 { font-size: 1.4rem; margin-bottom: 15px; color: var(--mora-oscuro); font-weight: 600; }
+        .card-especialidad p { font-size: 0.95rem; line-height: 1.6; color: var(--texto-mutado); }
+
+        /* SUCURSALES Y GOOGLE MAPS */
+        .grid-sucursales {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .card-sucursal {
+            background: var(--gris-claro);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .card-sucursal:hover {
+            transform: translateY(-5px);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 260px;
+            border: none;
+            background: #e5e3df;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .sucursal-info {
+            padding: 35px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .sucursal-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--mora-oscuro);
+        }
+
+        .sucursal-info h3 span {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sucursal-info p {
+            margin: 10px 0;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--texto-mutado);
+        }
+
+        .sucursal-info i {
+            color: var(--mora-principal);
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sucursal-actions {
+            margin-top: 25px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .badge-nueva {
+            background: var(--verde-salvia);
+            color: white;
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* WHATSAPP FLOTANTE */
+        .wsp {
+            position: fixed; bottom: 30px; right: 30px;
+            background: var(--verde-wsp); color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 32px; z-index: 1000; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .wsp:hover { transform: scale(1.1); }
+
+        footer {
+            background: var(--mora-oscuro);
+            color: var(--blanco);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        @media (max-width: 900px) {
+            .grid-sucursales { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            #acerca { grid-template-columns: 1fr; }
+
+            .hero-slider-container {
+                height: 460px;
+            }
+
+            .studio-brand {
+                top: 14px;
+                left: 14px;
+                padding: 7px 16px;
+                font-size: 0.95rem;
+            }
+
+            .slide-content {
+                max-width: 92%;
+                padding: 15px;
+                margin-top: 25px;
+            }
+
+            .slide-content h1 {
+                font-size: clamp(1.8rem, 8vw, 2.5rem);
+                line-height: 1.15;
+                margin-bottom: 12px;
+            }
+
+            .slide-content p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+                margin-bottom: 18px;
+            }
+
+            .cta-button {
+                padding: 12px 24px;
+                font-size: 0.95rem;
+            }
+
+            .slider-nav {
+                bottom: 14px;
+            }
+
+            .slider-button {
+                width: 38px;
+                height: 38px;
+                font-size: 0.9rem;
+            }
+
+            .sucursal-info { padding: 25px 20px; }
+        }
+
+        @media (max-width: 420px) {
+            .hero-slider-container {
+                height: 420px;
+            }
+
+            .studio-brand {
+                font-size: 0.85rem;
+            }
+
+            .slide-content h1 {
+                font-size: 1.75rem;
+            }
+
+            .slide-content p {
+                font-size: 0.88rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botón WhatsApp Flotante General -->
+    <a href="https://wa.me/5491100000000?text=Hola!%20Quiero%20consultar%20por%20las%20clases%20en%20Estudio%20Mora." class="wsp" target="_blank" aria-label="Contacto WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SLIDER HERO -->
+    <header class="hero-slider-container">
+        <a href="#" class="studio-brand" aria-label="Estudio Mora">
+            <i class="fas fa-spa"></i>
+            <span>MORA</span>
+        </a>
+
+        <div class="slider">
+            <!-- Slide 1: Pilates Reformer -->
+            <div class="slide-item" style="background-image: url('img/pilates_reformer.jpg');">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Reconecta con tu fuerza en<br><span>Pilates Reformer</span></h1>
+                    <p>Entrenamiento de bajo impacto que tonifica, estiliza tu postura y fortalece tu centro corporal.</p>
+                    <a href="https://wa.me/5491100000000?text=Hola!%20Me%20interesa%20probar%20una%20clase%20de%20Pilates%20Reformer." class="cta-button" target="_blank">Reservar Clase de Prueba</a>
+                </div>
+            </div>
+
+            <!-- Slide 2: Yoga -->
+            <div class="slide-item" style="background-image: url('img/yoga1.jpg');">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Encuentra tu equilibrio con nuestras sesiones de <span>Yoga</span></h1>
+                    <p>Posturas, fluidez y respiración consciente para liberar tensiones y serenar tu mente.</p>
+                    <a href="#especialidades" class="cta-button">Conocer Clases</a>
+                </div>
+            </div>
+
+            <!-- Slide 3: Pilates Mat -->
+            <div class="slide-item" style="background-image: url('img/pilates_mat1.jpg');">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Control y precisión en<br><span>Pilates Mat</span></h1>
+                    <p>Fortalece el powerhouse trabajando con el propio peso corporal y elementos accesorios.</p>
+                    <a href="#sedes" class="cta-button">Ver Sucursales</a>
+                </div>
+            </div>
+
+            <!-- Slide 4: Pilates Fitball -->
+            <div class="slide-item" style="background-image: url('img/pilates_fitball.jpg');">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Estabilidad y dinamismo en<br><span>Pilates Fitball</span></h1>
+                    <p>Desafía tu equilibrio, mejora la flexibilidad y activa músculos profundos de manera entretenida.</p>
+                    <a href="img/pilates_fitball.jpg" class="cta-button" target="_blank">Consultar Horarios</a>
+                </div>
+            </div>
+
+            <!-- Slide 5: Masajes descontracturantes -->
+            <div class="slide-item" style="background-image: url('img/masajes.jpg');">
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <h1>Regálate un alivio profundo con <span>Masajes Descontracturantes</span></h1>
+                    <p>Libera nudos musculares, mejora la circulación y restaura la vitalidad de tu cuerpo.</p>
+                    <a href="https://wa.me/5491100000000?text=Hola!%20Quisiera%20agendar%20un%20Turno%20para%20Masaje%20Descontracturante." class="cta-button cta-wsp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Agendar Turno
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles del Slider -->
+        <div class="slider-nav">
+            <button class="slider-button prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-button next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </header>
+
+    <!-- BARRA DE CONFIANZA -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <i class="fas fa-certificate"></i>
+            <div>Instructoras Certificadas</div>
+            <p>Guía atenta y dedicada</p>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-users-slash"></i>
+            <div>Grupos Reducidos</div>
+            <p>Atención personalizada</p>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>Dos Sucursales</div>
+            <p>San Fernando y San Isidro</p>
+        </div>
+    </div>
+
+    <!-- ACERCA DE -->
+    <section id="acerca">
+        <div class="acerca-texto">
+            <h2>Bienvenido a Estudio Mora</h2>
+            <p>En <strong>Mora</strong> concebimos el movimiento como una vía para sanar, fortalecer y conectar con el presente. Creamos un espacio cálido y sereno diseñado para desconectar del ritmo acelerado y reencontrarte con tu bienestar integral.</p>
+            <p>Con sedes en <strong>San Fernando</strong> y <strong>San Isidro</strong>, nuestras clases personalizadas se adaptan a tus necesidades y ritmo, guiándote a habitar tu cuerpo desde la conciencia y el respeto.</p>
+        </div>
+        <div class="acerca-img">
+            <img src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?q=80&w=800&auto=format&fit=crop" alt="Ambiente sereno en Estudio Mora">
+        </div>
+    </section>
+
+    <!-- ESPECIALIDADES -->
+    <section id="especialidades" style="background-color: var(--mora-suave); max-width: 100%; border-radius: 40px; padding: 90px 5%;">
+        <h2>Nuestras Prácticas & Tratamientos</h2>
+        <div class="grid-especialidades">
+
+            <div class="card-especialidad">
+                <i class="fas fa-dumbbell"></i>
+                <h3>Pilates Reformer</h3>
+                <p>Uso de camillas con resortes para alinear la columna, tonificar músculo magro y aumentar la resistencia corporal.</p>
+            </div>
+
+            <div class="card-especialidad">
+                <i class="fas fa-om"></i>
+                <h3>Yoga</h3>
+                <p>Especialidades Hatha y Vinyasa Flow para cultivar paz mental, flexibilidad muscular y fortaleza espiritual.</p>
+            </div>
+
+            <div class="card-especialidad">
+                <i class="fas fa-child"></i>
+                <h3>Pilates Mat</h3>
+                <p>Secuencias sobre mat enfocadas en el control postural, la fuerza del centro (core) y la flexibilidad fluida.</p>
+            </div>
+
+            <div class="card-especialidad">
+                <i class="fas fa-circle-notch"></i>
+                <h3>Pilates Fitball</h3>
+                <p>Dinámica con balones gigantes que activa la musculatura estabilizadora profunda y afina la coordinación postural.</p>
+            </div>
+
+            <div class="card-especialidad">
+                <i class="fas fa-hands"></i>
+                <h3>Masajes Descontracturantes</h3>
+                <p>Terapia manual enfocada en relajar contracturas, desinflamar tensiones acumuladas y restablecer el equilibrio físico.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SUCURSALES Y GOOGLE MAPS -->
+    <section id="sedes">
+        <h2>Nuestras Sucursales</h2>
+        <div class="grid-sucursales">
+
+            <!-- Sucursal 1: San Fernando -->
+            <div class="card-sucursal">
+                <div class="map-container">
+                    <iframe
+                        src="https://maps.google.com/maps?q=Av.+Constitución+1234,+San+Fernando,+Buenos+Aires,+Argentina&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Mapa Sucursal San Fernando">
+                    </iframe>
+                </div>
+                <div class="sucursal-info">
+                    <div>
+                        <h3>
+                            <span><i class="fas fa-store"></i> San Fernando</span>
+                        </h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Av. Constitución 1234, San Fernando</p>
+                        <p><i class="fas fa-clock"></i> Lun a Vie: 08:00 a 20:00 hs</p>
+                        <p><i class="fas fa-phone"></i> +54 9 11 1234-5678</p>
+                    </div>
+                    <div class="sucursal-actions">
+                        <a href="https://wa.me/5491112345678?text=Hola!%20Quiero%20consultar%20turnos%20en%20la%20sede%20San%20Fernando." target="_blank" class="cta-button cta-wsp" style="padding: 10px 20px; font-size: 0.95rem;">
+                            <i class="fab fa-whatsapp"></i> Agendar San Fernando
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sucursal 2: San Isidro -->
+            <div class="card-sucursal">
+                <div class="map-container">
+                    <iframe
+                        src="https://maps.google.com/maps?q=Av.+del+Libertador+450,+San+Isidro,+Buenos+Aires,+Argentina&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Mapa Sucursal San Isidro">
+                    </iframe>
+                </div>
+                <div class="sucursal-info">
+                    <div>
+                        <h3>
+                            <span><i class="fas fa-star"></i> San Isidro</span>
+                            <span class="badge-nueva">NUEVA</span>
+                        </h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Av. del Libertador 450, San Isidro</p>
+                        <p><i class="fas fa-clock"></i> Lun a Vie: 08:00 a 20:30 hs</p>
+                        <p><i class="fas fa-phone"></i> +54 9 11 8765-4321</p>
+                    </div>
+                    <div class="sucursal-actions">
+                        <a href="https://wa.me/5491187654321?text=Hola!%20Quiero%20consultar%20turnos%20en%20la%20nueva%20sede%20San%20Isidro." target="_blank" class="cta-button cta-wsp" style="padding: 10px 20px; font-size: 0.95rem;">
+                            <i class="fab fa-whatsapp"></i> Agendar San Isidro
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Estudio Mora | Pilates & Yoga Studio. San Fernando & San Isidro.</p>
+    </footer>
+
+    <!-- SCRIPT DEL SLIDER (SOPORTE TOUCH / SWIPE) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slider = document.querySelector('.slider');
+            const items = document.querySelectorAll('.slide-item');
+            const prevButton = document.querySelector('.prev');
+            const nextButton = document.querySelector('.next');
+
+            let currentIndex = 0;
+            let autoPlay;
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            function updateSlider(animate = true) {
+                slider.style.transition = animate ? 'transform 0.55s ease-in-out' : 'none';
+                slider.style.transform = `translate3d(-${currentIndex * 100}%, 0, 0)`;
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateSlider();
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                updateSlider();
+            }
+
+            function restartAutoPlay() {
+                clearInterval(autoPlay);
+                autoPlay = setInterval(nextSlide, 5000);
+            }
+
+            nextButton.addEventListener('click', () => {
+                nextSlide();
+                restartAutoPlay();
+            });
+
+            prevButton.addEventListener('click', () => {
+                prevSlide();
+                restartAutoPlay();
+            });
+
+            slider.addEventListener('touchstart', function (event) {
+                touchStartX = event.changedTouches[0].screenX;
+            }, { passive: true });
+
+            slider.addEventListener('touchend', function (event) {
+                touchEndX = event.changedTouches[0].screenX;
+                const distance = touchEndX - touchStartX;
+
+                if (Math.abs(distance) > 50) {
+                    if (distance < 0) nextSlide();
+                    else prevSlide();
+                    restartAutoPlay();
+                }
+            }, { passive: true });
+
+            window.addEventListener('resize', () => updateSlider(false));
+
+            updateSlider(false);
+            restartAutoPlay();
+        });
+    </script>
+</body>
+</html>
