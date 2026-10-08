@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MORA | Pilates & Yoga Studio - Villa Ballester</title>
+
+    <meta name="description"
+          content="MORA Pilates & Yoga Studio en Villa Ballester. Pilates Reformer, Yoga, Pilates Mat, FitBall y masajes descontracturantes.">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;1,400&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        :root {
+            --blanco-zen: #fbf9f6;
+            --lino-suave: #f2ece4;
+            --beige-calido: #e6ded4;
+            --verde-olivo-oscuro: #2e382b;
+            --mora-suave: #8c6d75;
+            --mora-hover: #72535b;
+            --texto-principal: #3a3a3a;
+            --gris-suave: #6e6e6e;
+            --blanco: #ffffff;
+            --verde-whatsapp: #25d366;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--texto-principal);
+            background-color: var(--blanco-zen);
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            min-height: 100svh;
+
+            background:
+                linear-gradient(
+                    rgba(251, 249, 246, 0.4),
+                    rgba(251, 249, 246, 0.7)
+                ),
+                url('img/hero_mora1.jpg')
+                no-repeat center center;
+
+            background-size: cover;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 30px 20px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            margin: 0;
+            letter-spacing: 14px;
+            font-weight: 400;
+            color: var(--verde-olivo-oscuro);
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-style: italic;
+            color: var(--mora-suave);
+            margin-top: 15px;
+            letter-spacing: 2px;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .hero-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            padding: 13px 22px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-size: .9rem;
+            font-weight: 600;
+
+            transition:
+                transform .2s,
+                background .2s;
+        }
+
+        .hero-button.primary {
+            background: var(--verde-olivo-oscuro);
+            color: white;
+        }
+
+        .hero-button.secondary {
+            background: rgba(251,249,246,.9);
+            color: var(--verde-olivo-oscuro);
+            border: 1px solid var(--beige-calido);
+        }
+
+        .hero-button:hover {
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           SECCIONES
+        ========================= */
+
+        section {
+            padding: 90px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+
+            font-size: 2.2rem;
+            font-weight: 400;
+
+            text-transform: uppercase;
+            letter-spacing: 5px;
+
+            color: var(--verde-olivo-oscuro);
+
+            margin: 0 0 40px;
+        }
+
+        h2::after {
+            content: "";
+
+            display: block;
+
+            width: 50px;
+            height: 2px;
+
+            background: var(--mora-suave);
+
+            margin: 20px auto 0;
+        }
+
+
+        /* =========================
+           ACERCA
+        ========================= */
+
+        #acerca {
+            background: var(--lino-suave);
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 50px;
+
+            align-items: center;
+
+            border-radius: 8px;
+
+            padding: 40px;
+        }
+
+        .acerca-img img {
+            width: 100%;
+            height: 350px;
+
+            object-fit: cover;
+
+            border-radius: 6px;
+
+            display: block;
+        }
+
+        .acerca-texto {
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        .acerca-texto strong {
+            color: var(--verde-olivo-oscuro);
+        }
+
+
+        /* =========================
+           SLIDER
+        ========================= */
+
+        .slider-container {
+            position: relative;
+
+            width: 100%;
+
+            overflow: hidden;
+
+            border-radius: 8px;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.05);
+
+            touch-action: pan-y;
+
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .slider {
+            display: flex;
+
+            width: 100%;
+
+            transform:
+                translate3d(0, 0, 0);
+
+            transition:
+                transform .55s
+                cubic-bezier(.25,.8,.25,1);
+
+            cursor: grab;
+
+            will-change: transform;
+        }
+
+        .slider.dragging {
+            cursor: grabbing;
+            transition: none;
+        }
+
+        .especialidad-item {
+            flex: 0 0 100%;
+
+            width: 100%;
+
+            height: 550px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .especialidad-item img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            pointer-events: none;
+
+            user-select: none;
+
+            -webkit-user-drag: none;
+        }
+
+        .especialidad-item .label {
+            position: absolute;
+
+            left: 40px;
+            bottom: 40px;
+
+            background:
+                rgba(251,249,246,.92);
+
+            color:
+                var(--verde-olivo-oscuro);
+
+            padding: 18px 35px;
+
+            border-left:
+                4px solid var(--mora-suave);
+
+            font-size: 1.1rem;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            font-weight: 500;
+
+            pointer-events: none;
+        }
+
+        .slider-nav {
+            position: absolute;
+
+            bottom: 25px;
+            right: 30px;
+
+            display: flex;
+
+            gap: 12px;
+
+            z-index: 50;
+
+            pointer-events: auto;
+        }
+
+        .slider-button {
+            position: relative;
+            z-index: 51;
+
+            background:
+                rgba(251,249,246,.9);
+
+            color:
+                var(--verde-olivo-oscuro);
+
+            border:
+                1px solid var(--beige-calido);
+
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            touch-action: manipulation;
+
+            -webkit-tap-highlight-color: transparent;
+
+            transition:
+                background .2s,
+                color .2s,
+                transform .2s;
+        }
+
+        .slider-button:hover {
+            background:
+                var(--verde-olivo-oscuro);
+
+            color:
+                var(--blanco-zen);
+
+            transform: scale(1.05);
+        }
+
+
+        /* =========================
+           UBICACIÓN
+        ========================= */
+
+        #ubicacion {
+            background: var(--lino-suave);
+
+            max-width: none;
+
+            padding:
+                90px 20px;
+        }
+
+        .ubicacion-inner {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .ubicacion-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1.3fr;
+
+            gap: 40px;
+
+            align-items: stretch;
+        }
+
+        .ubicacion-info {
+            background: var(--blanco-zen);
+
+            padding: 40px;
+
+            border-radius: 8px;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+        .ubicacion-info h3 {
+            font-family:
+                'Playfair Display', serif;
+
+            font-size: 2rem;
+
+            font-weight: 500;
+
+            color:
+                var(--verde-olivo-oscuro);
+
+            margin:
+                0 0 25px;
+        }
+
+        .ubicacion-info p {
+            line-height: 1.7;
+
+            color:
+                var(--gris-suave);
+
+            margin:
+                12px 0;
+        }
+
+        .ubicacion-info i {
+            width: 25px;
+
+            color:
+                var(--mora-suave);
+        }
+
+        .ubicacion-boton {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 9px;
+
+            margin-top: 20px;
+
+            padding:
+                13px 20px;
+
+            border-radius: 30px;
+
+            background:
+                var(--verde-olivo-oscuro);
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            transition:
+                transform .2s,
+                background .2s;
+        }
+
+        .ubicacion-boton:hover {
+            background:
+                var(--mora-hover);
+
+            transform:
+                translateY(-2px);
+        }
+
+        .mapa-container {
+            min-height: 400px;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,.08);
+        }
+
+        .mapa-container iframe {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            min-height: 400px;
+
+            border: 0;
+        }
+
+
+        /* =========================
+           CONTACTO / WHATSAPP
+        ========================= */
+
+        #contacto {
+            text-align: center;
+        }
+
+        .contacto-texto {
+            max-width: 650px;
+
+            margin:
+                -10px auto 30px;
+
+            line-height: 1.8;
+
+            color:
+                var(--gris-suave);
+        }
+
+        .whatsapp-button {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            background:
+                var(--verde-whatsapp);
+
+            color: white;
+
+            padding:
+                15px 28px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            box-shadow:
+                0 6px 18px rgba(37,211,102,.25);
+
+            transition:
+                transform .2s,
+                box-shadow .2s;
+        }
+
+        .whatsapp-button:hover {
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 9px 25px rgba(37,211,102,.35);
+        }
+
+        .whatsapp-button i {
+            font-size: 1.3rem;
+        }
+
+
+        /* =========================
+           WHATSAPP FLOTANTE
+        ========================= */
+
+        .whatsapp-float {
+            position: fixed;
+
+            right: 20px;
+            bottom: 20px;
+
+            width: 58px;
+            height: 58px;
+
+            border-radius: 50%;
+
+            background:
+                var(--verde-whatsapp);
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 28px;
+
+            text-decoration: none;
+
+            z-index: 999;
+
+            box-shadow:
+                0 5px 18px rgba(0,0,0,.2);
+
+            transition:
+                transform .2s,
+                box-shadow .2s;
+        }
+
+        .whatsapp-float:hover {
+            transform:
+                scale(1.08);
+
+            box-shadow:
+                0 8px 24px rgba(0,0,0,.25);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background:
+                var(--verde-olivo-oscuro);
+
+            color:
+                var(--blanco-zen);
+
+            text-align:
+                center;
+
+            padding:
+                45px 20px;
+        }
+
+        .footer-name {
+            font-family:
+                'Playfair Display', serif;
+
+            font-size:
+                1.7rem;
+
+            margin-bottom:
+                15px;
+        }
+
+        .footer-copy {
+            font-size:
+                .8rem;
+
+            opacity:
+                .7;
+
+            margin:
+                0;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            #acerca {
+                grid-template-columns: 1fr;
+            }
+
+            .especialidad-item {
+                height: 400px;
+            }
+
+            .ubicacion-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mapa-container,
+            .mapa-container iframe {
+                min-height: 350px;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+
+            section {
+                padding:
+                    60px 15px;
+            }
+
+            .hero-content h1 {
+                letter-spacing:
+                    9px;
+            }
+
+            .hero-content p {
+                font-size:
+                    1.3rem;
+            }
+
+            .hero-buttons {
+                flex-direction:
+                    column;
+
+                max-width:
+                    280px;
+
+                margin:
+                    30px auto 0;
+            }
+
+            .hero-button {
+                width:
+                    100%;
+            }
+
+            #acerca {
+                padding:
+                    25px;
+            }
+
+            .acerca-img img {
+                height:
+                    280px;
+            }
+
+            h2 {
+                font-size:
+                    1.8rem;
+
+                letter-spacing:
+                    3px;
+            }
+
+            .especialidad-item {
+                height:
+                    380px;
+            }
+
+            .especialidad-item .label {
+                left:
+                    15px;
+
+                bottom:
+                    18px;
+
+                padding:
+                    13px 18px;
+
+                font-size:
+                    .85rem;
+
+                max-width:
+                    70%;
+            }
+
+            .slider-nav {
+                right:
+                    12px;
+
+                bottom:
+                    12px;
+
+                gap:
+                    7px;
+            }
+
+            .slider-button {
+                width:
+                    42px;
+
+                height:
+                    42px;
+            }
+
+            .ubicacion-info {
+                padding:
+                    28px 22px;
+            }
+
+            .mapa-container,
+            .mapa-container iframe {
+                min-height:
+                    300px;
+            }
+
+            .whatsapp-float {
+                width:
+                    54px;
+
+                height:
+                    54px;
+
+                right:
+                    15px;
+
+                bottom:
+                    15px;
+
+                font-size:
+                    25px;
+            }
+        }
+
+
+        @media (max-width: 400px) {
+
+            .especialidad-item {
+                height:
+                    330px;
+            }
+
+            .hero-content h1 {
+                letter-spacing:
+                    6px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <h1>MORA</h1>
+
+            <p>
+                Pilates &amp; Yoga Studio
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#especialidades"
+                    class="hero-button primary">
+
+                    <i class="fas fa-spa"></i>
+
+                    Nuestras disciplinas
+
+                </a>
+
+
+                <a
+                    href="#ubicacion"
+                    class="hero-button secondary">
+
+                    <i class="fas fa-location-dot"></i>
+
+                    Cómo llegar
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         ACERCA
+    ========================= -->
+
+    <section id="acerca">
+
+        <div class="acerca-img">
+
+            <img
+                src="img/interior_pilates.jpg"
+                alt="Interior del estudio MORA">
+
+        </div>
+
+
+        <div class="acerca-texto">
+
+            <h2>
+                El Espacio
+            </h2>
+
+            <p>
+                Ubicados en
+                <strong>Villa Ballester</strong>,
+                diseñados para reconectar cuerpo,
+                mente y respiración.
+            </p>
+
+            <p>
+                En MORA creamos un espacio pensado
+                para disfrutar del movimiento,
+                mejorar el bienestar y encontrar
+                un momento de conexión personal.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DISCIPLINAS / SLIDER
+    ========================= -->
+
+    <section id="especialidades">
+
+        <h2>
+            Nuestras Disciplinas
+        </h2>
+
+
+        <div class="slider-container">
+
+            <div class="slider">
+
+
+                <!-- SLIDE 1 -->
+
+                <div class="especialidad-item">
+
+                    <img
+                        src="img/pilates_reformer.jpg"
+                        alt="Pilates Reformer"
+                        draggable="false">
+
+                    <div class="label">
+                        Pilates Reformer
+                    </div>
+
+                </div>
+
+
+                <!-- SLIDE 2 -->
+
+                <div class="especialidad-item">
+
+                    <img
+                        src="img/yoga.jpg"
+                        alt="Yoga"
+                        draggable="false">
+
+                    <div class="label">
+                        Yoga
+                    </div>
+
+                </div>
+
+
+                <!-- SLIDE 3 -->
+
+                <div class="especialidad-item">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1599447421416-3414500d18a5?auto=format&fit=crop&w=1400&q=80"
+                        alt="Pilates Mat"
+                        draggable="false">
+
+                    <div class="label">
+                        Pilates Mat
+                    </div>
+
+                </div>
+
+
+                <!-- SLIDE 4 -->
+
+                <div class="especialidad-item">
+
+                    <img
+                        src="img/pilates_fitball.jpg"
+                        alt="Pilates FitBall"
+                        draggable="false">
+
+                    <div class="label">
+                        Pilates FitBall
+                    </div>
+
+                </div>
+
+
+                <!-- SLIDE 5 -->
+
+                <div class="especialidad-item">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1400&q=80"
+                        alt="Masajes Descontracturantes"
+                        draggable="false">
+
+                    <div class="label">
+                        Masajes Descontracturantes
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOTONES SLIDER -->
+
+            <div class="slider-nav">
+
+                <button
+                    type="button"
+                    class="slider-button prev"
+                    aria-label="Disciplina anterior">
+
+                    <i class="fas fa-chevron-left"></i>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="slider-button next"
+                    aria-label="Disciplina siguiente">
+
+                    <i class="fas fa-chevron-right"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         UBICACIÓN
+    ========================= -->
+
+    <section id="ubicacion">
+
+        <div class="ubicacion-inner">
+
+            <h2>
+                Encontranos
+            </h2>
+
+
+            <div class="ubicacion-grid">
+
+
+                <!-- INFORMACIÓN -->
+
+                <div class="ubicacion-info">
+
+                    <h3>
+                        MORA Pilates &amp; Yoga Studio
+                    </h3>
+
+
+                    <p>
+                        <i class="fas fa-location-dot"></i>
+
+                        Lacroze 5000,
+                        Villa Ballester,
+                        Buenos Aires, Argentina
+                    </p>
+
+
+                    <p>
+                        <i class="fas fa-spa"></i>
+
+                        Pilates · Yoga · Bienestar
+                    </p>
+
+
+                    <p>
+                        <i class="fab fa-whatsapp"></i>
+
+                        Consultanos por WhatsApp
+                    </p>
+
+
+                    <a
+                        href="https://www.google.com/maps/search/?api=1&query=Lacroze+5000,+Villa+Ballester,+Buenos+Aires,+Argentina"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="ubicacion-boton">
+
+                        <i class="fas fa-map-marker-alt"></i>
+
+                        Cómo llegar
+
+                    </a>
+
+                </div>
+
+
+                <!-- GOOGLE MAPS -->
+
+                <div class="mapa-container">
+
+                    <iframe
+                        src="https://www.google.com/maps?q=Lacroze%205000,%20Villa%20Ballester,%20Buenos%20Aires,%20Argentina&output=embed"
+                        loading="lazy"
+                        allowfullscreen=""
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACTO WHATSAPP
+    ========================= -->
+
+    <section id="contacto">
+
+        <h2>
+            Contactanos
+        </h2>
+
+
+        <p class="contacto-texto">
+
+            ¿Querés conocer nuestras clases,
+            consultar horarios o reservar tu lugar?
+
+            Escribinos por WhatsApp y te contamos
+            todas las opciones disponibles.
+
+        </p>
+
+
+        <!--
+            IMPORTANTE:
+            Reemplazar 5491100000000
+            por el número real de MORA.
+        -->
+
+        <a
+            href="https://wa.me/5491100000000?text=Hola%21%20Quisiera%20consultar%20por%20las%20clases%20de%20MORA."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="whatsapp-button">
+
+            <i class="fab fa-whatsapp"></i>
+
+            Escribir por WhatsApp
+
+        </a>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div class="footer-name">
+            MORA Pilates &amp; Yoga Studio
+        </div>
+
+        <p class="footer-copy">
+            Villa Ballester · Buenos Aires · Argentina
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         WHATSAPP FLOTANTE
+    ========================= -->
+
+    <a
+        href="https://wa.me/5491100000000?text=Hola%21%20Quisiera%20consultar%20por%20las%20clases%20de%20MORA."
+        class="whatsapp-float"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactar por WhatsApp">
+
+        <i class="fab fa-whatsapp"></i>
+
+    </a>
+
+
+    <!-- =========================
+         JAVASCRIPT SLIDER
+    ========================= -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                const slider =
+                    document.querySelector(".slider");
+
+                const sliderContainer =
+                    document.querySelector(".slider-container");
+
+                const slides =
+                    document.querySelectorAll(
+                        ".especialidad-item"
+                    );
+
+                const prevButton =
+                    document.querySelector(
+                        ".slider-button.prev"
+                    );
+
+                const nextButton =
+                    document.querySelector(
+                        ".slider-button.next"
+                    );
+
+
+                if (
+                    !slider ||
+                    !sliderContainer ||
+                    slides.length === 0
+                ) {
+                    return;
+                }
+
+
+                let currentIndex = 0;
+
+                let startX = 0;
+
+                let currentX = 0;
+
+                let isDragging = false;
+
+                let pointerId = null;
+
+                let autoPlay = null;
+
+
+                /* =========================
+                   MOSTRAR SLIDE
+                ========================= */
+
+                function showSlide(
+                    index,
+                    animate = true
+                ) {
+
+                    if (index < 0) {
+                        index =
+                            slides.length - 1;
+                    }
+
+                    if (index >= slides.length) {
+                        index = 0;
+                    }
+
+
+                    currentIndex = index;
+
+
+                    slider.style.transition =
+                        animate
+                            ? "transform .55s cubic-bezier(.25,.8,.25,1)"
+                            : "none";
+
+
+                    slider.style.transform =
+                        "translate3d(-" +
+                        (currentIndex * 100) +
+                        "%, 0, 0)";
+                }
+
+
+                /* =========================
+                   SIGUIENTE
+                ========================= */
+
+                function nextSlide() {
+
+                    showSlide(
+                        currentIndex + 1
+                    );
+
+                    restartAutoPlay();
+                }
+
+
+                /* =========================
+                   ANTERIOR
+                ========================= */
+
+                function previousSlide() {
+
+                    showSlide(
+                        currentIndex - 1
+                    );
+
+                    restartAutoPlay();
+                }
+
+
+                /* =========================
+                   BOTONES
+                ========================= */
+
+                if (nextButton) {
+
+                    nextButton.addEventListener(
+                        "click",
+                        function (event) {
+
+                            event.preventDefault();
+
+                            event.stopPropagation();
+
+                            nextSlide();
+                        }
+                    );
+
+                }
+
+
+                if (prevButton) {
+
+                    prevButton.addEventListener(
+                        "click",
+                        function (event) {
+
+                            event.preventDefault();
+
+                            event.stopPropagation();
+
+                            previousSlide();
+                        }
+                    );
+
+                }
+
+
+                /* =========================
+                   POINTER DOWN
+                ========================= */
+
+                sliderContainer.addEventListener(
+                    "pointerdown",
+                    function (event) {
+
+                        if (
+                            event.target.closest(
+                                ".slider-button"
+                            )
+                        ) {
+                            return;
+                        }
+
+
+                        if (
+                            event.pointerType === "mouse" &&
+                            event.button !== 0
+                        ) {
+                            return;
+                        }
+
+
+                        startX =
+                            event.clientX;
+
+                        currentX =
+                            event.clientX;
+
+                        isDragging = true;
+
+                        pointerId =
+                            event.pointerId;
+
+
+                        slider.classList.add(
+                            "dragging"
+                        );
+
+
+                        stopAutoPlay();
+
+
+                        try {
+
+                            sliderContainer.setPointerCapture(
+                                event.pointerId
+                            );
+
+                        } catch (error) {}
+
+                    }
+                );
+
+
+                /* =========================
+                   POINTER MOVE
+                ========================= */
+
+                sliderContainer.addEventListener(
+                    "pointermove",
+                    function (event) {
+
+                        if (!isDragging) {
+                            return;
+                        }
+
+
+                        if (
+                            pointerId !== null &&
+                            event.pointerId !== pointerId
+                        ) {
+                            return;
+                        }
+
+
+                        currentX =
+                            event.clientX;
+
+                    }
+                );
+
+
+                /* =========================
+                   FINALIZAR DESPLAZAMIENTO
+                ========================= */
+
+                function finishDrag(event) {
+
+                    if (!isDragging) {
+                        return;
+                    }
+
+
+                    const difference =
+                        startX - currentX;
+
+
+                    isDragging = false;
+
+                    pointerId = null;
+
+                    slider.classList.remove(
+                        "dragging"
+                    );
+
+
+                    if (
+                        Math.abs(difference) > 50
+                    ) {
+
+                        if (difference > 0) {
+
+                            showSlide(
+                                currentIndex + 1
+                            );
+
+                        } else {
+
+                            showSlide(
+                                currentIndex - 1
+                            );
+
+                        }
+
+                    } else {
+
+                        showSlide(
+                            currentIndex
+                        );
+                    }
+
+
+                    startAutoPlay();
+                }
+
+
+                /* =========================
+                   POINTER UP
+                ========================= */
+
+                sliderContainer.addEventListener(
+                    "pointerup",
+                    function (event) {
+
+                        finishDrag(event);
+
+                    }
+                );
+
+
+                /* =========================
+                   POINTER CANCEL
+                ========================= */
+
+                sliderContainer.addEventListener(
+                    "pointercancel",
+                    function () {
+
+                        if (!isDragging) {
+                            return;
+                        }
+
+
+                        isDragging = false;
+
+                        pointerId = null;
+
+                        slider.classList.remove(
+                            "dragging"
+                        );
+
+
+                        showSlide(
+                            currentIndex
+                        );
+
+
+                        startAutoPlay();
+
+                    }
+                );
+
+
+                /* =========================
+                   AUTOPLAY
+                ========================= */
+
+                function startAutoPlay() {
+
+                    stopAutoPlay();
+
+
+                    autoPlay =
+                        setInterval(
+                            function () {
+
+                                if (!isDragging) {
+
+                                    showSlide(
+                                        currentIndex + 1
+                                    );
+
+                                }
+
+                            },
+                            6000
+                        );
+                }
+
+
+                function stopAutoPlay() {
+
+                    if (
+                        autoPlay !== null
+                    ) {
+
+                        clearInterval(
+                            autoPlay
+                        );
+
+                        autoPlay = null;
+                    }
+                }
+
+
+                function restartAutoPlay() {
+
+                    stopAutoPlay();
+
+                    startAutoPlay();
+                }
+
+
+                /* =========================
+                   EVITAR DRAG DE IMÁGENES
+                ========================= */
+
+                slides.forEach(
+                    function (slide) {
+
+                        const image =
+                            slide.querySelector(
+                                "img"
+                            );
+
+                        if (image) {
+
+                            image.addEventListener(
+                                "dragstart",
+                                function (event) {
+
+                                    event.preventDefault();
+
+                                }
+                            );
+                        }
+
+                    }
+                );
+
+
+                /* =========================
+                   INICIAR
+                ========================= */
+
+                showSlide(
+                    0,
+                    false
+                );
+
+                startAutoPlay();
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
