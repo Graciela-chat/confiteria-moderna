@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Servicios de fontanería, electricidad, carpintería, instalaciones de gas y albañilería en Málaga. Solicita tu presupuesto por WhatsApp.">
+  <title>Arregla Hogar | Reformas y Reparaciones en Málaga</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --navy: #102a43;
+      --blue: #1769aa;
+      --orange: #f28c28;
+      --ink: #18212b;
+      --muted: #5b6773;
+      --light: #f4f7fa;
+      --white: #fff;
+      --green: #25d366;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Roboto', sans-serif; color: var(--ink); overflow-x: hidden; line-height: 1.6; }
+    h1, h2, h3, .brand, .eyebrow { font-family: 'Montserrat', sans-serif; }
+    a { color: inherit; }
+    .topbar { background: var(--navy); color: white; padding: 9px 5%; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: .9rem; }
+    .topbar span { display: inline-flex; align-items: center; gap: 8px; }
+    .topbar i { color: var(--orange); }
+    nav { padding: 16px 5%; display: flex; align-items: center; justify-content: space-between; gap: 20px; background: white; }
+    .brand { text-decoration: none; font-weight: 800; font-size: 1.35rem; color: var(--navy); letter-spacing: -.5px; }
+    .brand span { color: var(--orange); }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { text-decoration: none; font-weight: 600; font-size: .94rem; }
+    .nav-links a:hover { color: var(--blue); }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 13px 21px; border-radius: 7px; background: var(--orange); color: #17212b; text-decoration: none; font-weight: 800; border: 0; cursor: pointer; transition: .2s; }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.04); }
+    .btn-blue { background: var(--blue); color: white; }
+    .hero { min-height: 560px; display: flex; align-items: center; padding: 75px 7%; color: white; background: linear-gradient(90deg, rgba(10,31,51,.91), rgba(10,31,51,.58)), url('img/herooficios.jpg') center/cover no-repeat; }
+    /* Fondo alternativo estable: se muestra aunque la imagen remota no cargue. */
+    .hero { background-image: linear-gradient(90deg, rgba(10,31,51,.91), rgba(10,31,51,.58)), url('img/herooficios.jpg'); }
+    .hero-content { max-width: 760px; }
+    .eyebrow { display: inline-block; color: #ffd3a3; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; font-size: .82rem; margin-bottom: 16px; }
+    .hero h1 { font-size: clamp(2.3rem, 5.4vw, 4.5rem); line-height: 1.08; margin-bottom: 22px; letter-spacing: -1.5px; }
+    .hero h1 span { color: #ffb35c; }
+    .hero p { max-width: 620px; font-size: clamp(1.05rem, 2vw, 1.25rem); color: #eef4f8; margin-bottom: 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn-outline { color: white; border: 1px solid rgba(255,255,255,.65); background: transparent; }
+    .benefits { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--navy); color: white; padding: 24px 5%; gap: 20px; }
+    .benefit { display: flex; justify-content: center; align-items: center; gap: 13px; text-align: left; }
+    .benefit i { color: var(--orange); font-size: 1.6rem; }
+    .benefit strong { display: block; font-family: 'Montserrat', sans-serif; }
+    .benefit small { color: #c8d5e0; }
+    section { padding: 78px 6%; }
+    .section-head { text-align: center; max-width: 760px; margin: 0 auto 38px; }
+    .section-head .eyebrow { color: var(--blue); margin-bottom: 8px; }
+    h2 { font-size: clamp(1.8rem, 3.2vw, 2.65rem); line-height: 1.2; color: var(--navy); margin-bottom: 14px; }
+    .section-head p { color: var(--muted); }
+    .intro { display: grid; grid-template-columns: 1fr 1fr; gap: 46px; align-items: center; max-width: 1200px; margin: auto; }
+    .intro img { width: 100%; min-height: 320px; max-height: 440px; object-fit: cover; border-radius: 14px; display: block; }
+    .intro-copy p { color: var(--muted); margin: 12px 0 22px; }
+    .check-list { list-style: none; display: grid; gap: 10px; margin: 20px 0 26px; }
+    .check-list li { display: flex; gap: 10px; align-items: flex-start; }
+    .check-list i { color: var(--blue); margin-top: 5px; }
+    #servicios { background: var(--light); }
+    .slider-container { position: relative; max-width: 1120px; margin: auto; overflow: hidden; border-radius: 14px; box-shadow: 0 12px 35px rgba(16,42,67,.13); }
+    .slider { display: flex; transition: transform .45s ease; will-change: transform; }
+    .slide { flex: 0 0 100%; width: 100%; min-width: 100%; height: 420px; position: relative; background: var(--navy); }
+    .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,25,41,.9), rgba(8,25,41,.03) 72%); }
+    .slide-caption { position: absolute; z-index: 2; left: clamp(18px, 5%, 50px); right: 20px; bottom: 68px; color: white; max-width: 650px; }
+    .slide-caption h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); margin-bottom: 7px; }
+    .slide-caption p { color: #e9f0f5; max-width: 600px; }
+    .slider-nav { position: absolute; bottom: 18px; right: 20px; display: flex; gap: 10px; z-index: 3; }
+    .slider-button { width: 43px; height: 43px; border: 0; border-radius: 50%; color: white; background: var(--blue); cursor: pointer; }
+    .slider-button:hover { background: var(--orange); color: var(--ink); }
+    .dots { position: absolute; z-index: 3; bottom: 31px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
+    .dot { border: 0; width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.55); cursor: pointer; }
+    .dot.active { background: var(--orange); width: 23px; border-radius: 8px; }
+    .service-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; max-width: 1200px; margin: 36px auto 0; }
+    .service-card { background: white; padding: 22px 17px; border-radius: 10px; text-align: center; box-shadow: 0 4px 18px rgba(16,42,67,.06); }
+    .service-card i { font-size: 1.8rem; color: var(--blue); margin-bottom: 12px; }
+    .service-card h3 { font-size: 1rem; color: var(--navy); margin-bottom: 7px; }
+    .service-card p { color: var(--muted); font-size: .9rem; }
+    .cta-band { background: var(--blue); color: white; padding: 52px 6%; text-align: center; }
+    .cta-band h2 { color: white; margin-bottom: 10px; }
+    .cta-band p { margin: 0 auto 22px; max-width: 700px; color: #eaf3fa; }
+    .contact-wrap { display: grid; grid-template-columns: .9fr 1.1fr; max-width: 1200px; margin: auto; border-radius: 14px; overflow: hidden; background: var(--light); }
+    .contact-info { padding: clamp(25px, 4vw, 48px); }
+    .contact-info h2 { text-align: left; }
+    .contact-info p { display: flex; align-items: flex-start; gap: 12px; margin: 17px 0; color: var(--muted); }
+    .contact-info p i { color: var(--blue); width: 20px; margin-top: 5px; }
+    .map { min-height: 390px; }
+    .map iframe { display: block; width: 100%; height: 100%; min-height: 390px; border: 0; }
+    footer { background: #0b1e30; color: #d7e1e9; text-align: center; padding: 26px 5%; font-size: .9rem; }
+    .whatsapp { position: fixed; right: 22px; bottom: 22px; z-index: 99; width: 60px; height: 60px; border-radius: 50%; background: var(--green); color: white; display: flex; align-items: center; justify-content: center; font-size: 32px; text-decoration: none; box-shadow: 0 5px 18px rgba(0,0,0,.25); }
+    .whatsapp:hover { transform: scale(1.05); }
+    @media (max-width: 900px) {
+      .nav-links { gap: 13px; }
+      .nav-links a:not(.btn) { display: none; }
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+      .intro { gap: 28px; }
+    }
+    @media (max-width: 650px) {
+      .topbar { justify-content: center; text-align: center; font-size: .82rem; }
+      nav { padding: 14px 5%; }
+      .brand { font-size: 1.12rem; }
+      nav .btn { padding: 10px 12px; font-size: .85rem; }
+      .hero { min-height: 510px; padding: 64px 6%; background-position: 58% center; }
+      .hero h1 { letter-spacing: -.7px; }
+      .hero-actions .btn { width: 100%; }
+      .benefits { grid-template-columns: 1fr; padding: 24px 8%; gap: 17px; }
+      .benefit { justify-content: flex-start; }
+      section { padding: 58px 5%; }
+      .intro { grid-template-columns: 1fr; }
+      .intro img { min-height: 230px; max-height: 300px; }
+      .slide { height: 360px; }
+      .slide-caption { bottom: 76px; }
+      .slide-caption p { font-size: .94rem; }
+      .dots { left: 20px; transform: none; bottom: 34px; }
+      .service-grid { gap: 12px; }
+      .service-card { padding: 18px 12px; }
+      .contact-wrap { grid-template-columns: 1fr; }
+      .map, .map iframe { min-height: 300px; }
+      .whatsapp { width: 55px; height: 55px; right: 16px; bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- DEMO: sustituir nombre, teléfono, correo, ubicación y enlaces por los datos reales del profesional. -->
+  <div class="topbar">
+    <span><i class="fa-solid fa-location-dot"></i> Málaga y alrededores</span>
+    <span><i class="fa-regular fa-clock"></i> Atención con cita previa</span>
+  </div>
+  <nav>
+    <a class="brand" href="#inicio">ARREGLA<span>HOGAR</span></a>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Quiénes somos</a>
+      <a href="#contacto">Contacto</a>
+      <a class="btn" href="https://wa.me/34600000000?text=Hola%2C%20quisiera%20consultar%20por%20un%20trabajo." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Pedir presupuesto</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="hero-content">
+      <span class="eyebrow">Reparaciones · Instalaciones · Reformas</span>
+      <h1>Soluciones para tu hogar.<br><span>Trabajo bien hecho.</span></h1>
+      <p>Carpintería, fontanería, electricidad, instalaciones de gas y albañilería. Cuéntanos qué necesitas y te ayudaremos a encontrar la solución.</p>
+      <div class="hero-actions">
+        <a class="btn" href="https://wa.me/34600000000?text=Hola%2C%20quisiera%20solicitar%20un%20presupuesto." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Solicitar presupuesto</a>
+        <a class="btn btn-outline" href="#servicios">Ver servicios <i class="fa-solid fa-arrow-down"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="benefits">
+    <div class="benefit"><i class="fa-solid fa-screwdriver-wrench"></i><div><strong>Varios oficios</strong><small>Soluciones para distintas necesidades</small></div></div>
+    <div class="benefit"><i class="fa-solid fa-comments"></i><div><strong>Trato directo</strong><small>Consulta tu trabajo por WhatsApp</small></div></div>
+    <div class="benefit"><i class="fa-solid fa-clipboard-check"></i><div><strong>Presupuesto previo</strong><small>Consulta el coste antes de empezar</small></div></div>
+  </div>
+
+  <section id="nosotros">
+    <div class="intro">
+      <img src="img/somoshogar.jpg" alt="Profesional realizando una instalación eléctrica" loading="lazy">
+      <div class="intro-copy">
+        <span class="eyebrow">Cuidamos cada detalle</span>
+        <h2>Un solo contacto para tus reparaciones y reformas</h2>
+        <p>Desde pequeñas reparaciones hasta trabajos de mejora en la vivienda, te ofrecemos una forma sencilla de consultar servicios y solicitar presupuesto.</p>
+        <ul class="check-list">
+          <li><i class="fa-solid fa-circle-check"></i><span>Atención para particulares y comunidades.</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span>Comunicación directa para explicar qué necesitas.</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span>Presupuesto según el tipo y alcance del trabajo.</span></li>
+        </ul>
+        <a class="btn btn-blue" href="https://wa.me/34600000000?text=Hola%2C%20quisiera%20hacer%20una%20consulta." target="_blank" rel="noopener">Consultar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="section-head">
+      <span class="eyebrow">Qué hacemos</span>
+      <h2>Servicios para tu vivienda o negocio</h2>
+      <p>Selecciona el tipo de trabajo que necesitas y consúltanos disponibilidad y presupuesto.</p>
+    </div>
+
+    <div class="slider-container" aria-label="Galería de servicios">
+      <div class="slider">
+        <article class="slide">
+          <img src="img/electricidad.jpg" alt="Trabajo de electricidad" loading="lazy">
+          <div class="slide-caption"><h3>Electricidad</h3><p>Instalaciones, iluminación, enchufes y revisión de averías eléctricas.</p></div>
+        </article>
+        <article class="slide">
+          <img src="img/fontanero.jpg" alt="Trabajo de fontanería" loading="lazy">
+          <div class="slide-caption"><h3>Fontanería</h3><p>Grifos, sanitarios, tuberías, fugas y pequeñas reparaciones.</p></div>
+        </article>
+        <article class="slide">
+          <img src="img/carpinteria.jpg" alt="Muebles y carpintería" loading="lazy">
+          <div class="slide-caption"><h3>Carpintería</h3><p>Montaje de muebles, ajuste de puertas, armarios y reparaciones.</p></div>
+        </article>
+        <article class="slide">
+          <img src="img/albanileria.jpg" alt="Trabajos de albañilería y reforma" loading="lazy">
+          <div class="slide-caption"><h3>Albañilería y reformas</h3><p>Reparación de paredes, colocación de suelos y mejoras en interiores.</p></div>
+        </article>
+        <article class="slide">
+          <img src="img/gasista.jpg" alt="Profesional realizando trabajos técnicos" loading="lazy">
+          <div class="slide-caption"><h3>Instalaciones de gas</h3><p>Consultas y trabajos de gas realizados por profesionales habilitados cuando corresponda.</p></div>
+        </article>
+      </div>
+      <div class="dots" aria-label="Elegir servicio">
+        <button class="dot active" aria-label="Servicio 1" type="button"></button>
+        <button class="dot" aria-label="Servicio 2" type="button"></button>
+        <button class="dot" aria-label="Servicio 3" type="button"></button>
+        <button class="dot" aria-label="Servicio 4" type="button"></button>
+        <button class="dot" aria-label="Servicio 5" type="button"></button>
+      </div>
+      <div class="slider-nav">
+        <button class="slider-button prev" type="button" aria-label="Servicio anterior"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="slider-button next" type="button" aria-label="Servicio siguiente"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <div class="service-grid">
+      <div class="service-card"><i class="fa-solid fa-hammer"></i><h3>Carpintería</h3><p>Puertas, muebles y ajustes.</p></div>
+      <div class="service-card"><i class="fa-solid fa-faucet-drip"></i><h3>Fontanería</h3><p>Grifos, tuberías y sanitarios.</p></div>
+      <div class="service-card"><i class="fa-solid fa-bolt"></i><h3>Electricidad</h3><p>Iluminación e instalaciones.</p></div>
+      <div class="service-card"><i class="fa-solid fa-trowel-bricks"></i><h3>Albañilería</h3><p>Reparaciones y pequeñas reformas.</p></div>
+      <div class="service-card"><i class="fa-solid fa-fire-flame-simple"></i><h3>Instalaciones de gas</h3><p>Según habilitación y normativa aplicable.</p></div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>¿Tienes algo que reparar o mejorar?</h2>
+    <p>Explícanos brevemente qué necesitas. Si puedes, envíanos fotos por WhatsApp para que podamos valorar mejor el trabajo.</p>
+    <a class="btn" href="https://wa.me/34600000000?text=Hola%2C%20quiero%20consultar%20por%20una%20reparaci%C3%B3n%20o%20reforma." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Hablar por WhatsApp</a>
+  </div>
+
+  <section id="contacto">
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <span class="eyebrow">Estamos para ayudarte</span>
+        <h2>Contacto y zona de trabajo</h2>
+        <p><i class="fa-brands fa-whatsapp"></i><span><strong>WhatsApp</strong><br>+34 600 000 000</span></p>
+        <p><i class="fa-solid fa-envelope"></i><span><strong>Correo electrónico</strong><br>hola@arreglahogar.es</span></p>
+        <p><i class="fa-solid fa-location-dot"></i><span><strong>Zona de trabajo</strong><br>Málaga y alrededores</span></p>
+        <p><i class="fa-regular fa-clock"></i><span><strong>Horario</strong><br>Con cita previa</span></p>
+        <a class="btn btn-blue" href="https://wa.me/34600000000?text=Hola%2C%20quisiera%20consultar%20disponibilidad." target="_blank" rel="noopener">Consultar disponibilidad</a>
+      </div>
+      <div class="map">
+        <iframe title="Mapa de Málaga" src="https://www.google.com/maps?q=M%C3%A1laga%2C%20Espa%C3%B1a&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Arregla Hogar · Reparaciones, instalaciones y reformas en Málaga.</p>
+    <p>Los servicios de gas y otros trabajos regulados deben realizarse por profesionales habilitados cuando la normativa lo exija.</p>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/34600000000?text=Hola%2C%20vengo%20de%20la%20web%20y%20quisiera%20pedir%20presupuesto." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slider = document.querySelector('.slider');
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const dots = Array.from(document.querySelectorAll('.dot'));
+      const prev = document.querySelector('.prev');
+      const next = document.querySelector('.next');
+      const container = document.querySelector('.slider-container');
+      let index = 0;
+      let autoPlay;
+
+      function showSlide(newIndex) {
+        index = (newIndex + slides.length) % slides.length;
+        slider.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+          dot.setAttribute('aria-current', i === index ? 'true' : 'false');
+        });
+      }
+      function startAutoPlay() {
+        clearInterval(autoPlay);
+        autoPlay = setInterval(() => showSlide(index + 1), 6000);
+      }
+      next.addEventListener('click', () => { showSlide(index + 1); startAutoPlay(); });
+      prev.addEventListener('click', () => { showSlide(index - 1); startAutoPlay(); });
+      dots.forEach((dot, i) => dot.addEventListener('click', () => { showSlide(i); startAutoPlay(); }));
+      container.addEventListener('mouseenter', () => clearInterval(autoPlay));
+      container.addEventListener('mouseleave', startAutoPlay);
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) clearInterval(autoPlay);
+        else startAutoPlay();
+      });
+      let touchStartX = 0;
+      container.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, {passive:true});
+      container.addEventListener('touchend', e => {
+        const delta = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(delta) > 45) {
+          showSlide(index + (delta < 0 ? 1 : -1));
+          startAutoPlay();
+        }
+      }, {passive:true});
+      showSlide(0);
+      startAutoPlay();
+    });
+  </script>
+</body>
+</html>
